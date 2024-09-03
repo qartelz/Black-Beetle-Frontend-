@@ -18,12 +18,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+ul.list-marker-yellow ::marker {
+  color: #D7B257C9;
 }
 
 @layer utilities {
@@ -33,6 +34,6 @@ body {
 }
 
 .custom-shadow {
-  box-shadow: 0 0px 20px rgba(215, 178, 87, 0.3); 
-   
+  box-shadow: 0 0px 20px rgba(215, 178, 87, 0.3);
+
 }

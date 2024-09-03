@@ -13,6 +13,10 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'gradient-stock-card': 'linear-gradient(180deg, #2F2F2F 0%, rgba(41, 29, 0, 0.74) 49.5%, #2F2F2F 100%)',
       },
+      backgroundColor: {
+        success: "#1DF81F",
+        danger: "#FF135B",
+      },
       colors: {
         success: "#1DF81F",
         danger: "#FF135B",
