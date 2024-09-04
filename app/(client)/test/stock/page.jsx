@@ -13,7 +13,7 @@ import Button from "@/components/button/page";
 import { useState } from "react";
 import Session from "./sections/Section";
 
-const navs = ['Summary', 'Analysis', 'History', 'News', 'Prediction v/s Actual Analysis']
+const navs = ['Summary', 'Analysis', 'History', 'Prediction v/s Actual Analysis']
 
 export default function exportStock() {
 
