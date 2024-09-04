@@ -12,9 +12,9 @@ export default function StockCard({ stockData }) {
                 <div className="flex-1 flex justify-end">
                     <Star />
                 </div>
-                <span className="text-white font-bold text-2xl">{stockData.symbol}</span>
-                <span className="text-white text-lg opacity-[79%]">{stockData.companyName}</span>
-                <span className="text-white text-sm opacity-[79%]">{stockData.date}</span>
+                <span className="text-white font-bold text-2xl">MSFT</span>
+                <span className="text-white text-lg opacity-[79%]">Microsoft Corporation</span>
+                <span className="text-white text-sm opacity-[79%]">30th August 2024</span>
                 <div className="flex justify-between">
                     <span className="text-[#FFB500] text-xl">{stockData.strategy}</span>
                     <span className={`flex-1 text-end ${stockData.changePercentage > 0 ? "text-success" : "text-danger"} font-semibold text-lg`}>
