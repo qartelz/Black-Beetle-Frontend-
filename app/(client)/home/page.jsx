@@ -1,4 +1,4 @@
-import Image from "next/image"; // For optimized image handling
+import Image from "next/image";
 import Link from "next/link"; // For client-side navigation
 // import heroImage from '../public/hero-image.jpg';
 import Navbar from "@/components/navbar/page";
@@ -6,6 +6,21 @@ import Logo from "@/assets/images/black-beetles-logo.png";
 import Illustration from "@/assets/svg/Illustration";
 import BoxTopSm from "@/assets/svg/BoxTopSm";
 import BoxTopLg from "@/assets/svg/BoxTopLg";
+import Lines from "@/assets/svg/Lines";
+
+import LeftTopImg from "@/assets/svg/LeftTopImg";
+import CenTopImg from "@/assets/svg/CenTopImg";
+import RigTopImg from "@/assets/svg/RigTopImg";
+import BoxBottom from "@/assets/svg/BoxBottom";
+import InterBeteels from "@/assets/svg/InterBeteels";
+import ChartBottom from "@/assets/svg/ChartBottom";
+import ScreenAiMap from "@/assets/svg/ScreenAiMap";
+
+const LinesSVG = () => (
+  <div className=" flex items-center justify-center">
+    <Lines className="w-full h-full" />
+  </div>
+);
 
 const svgBackground = `
 <svg width="1422" height="1104" viewBox="0 0 1422 1104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,6 +112,8 @@ const dataUrl = `url("data:image/svg+xml;base64,${Buffer.from(
 ).toString("base64")}")`;
 
 const HomePage = () => {
+  const svgLines = "data:image/svg+xml;base64," + btoa((<Lines />).toString());
+
   return (
     <main className="w-full h-[1104px]" style={{ backgroundImage: dataUrl }}>
       <Navbar />
@@ -130,7 +147,7 @@ const HomePage = () => {
           </p>
 
           <Link
-            href="/your-link"
+            href="/test/dashboard"
             className="inline-block bg-[#D7B257] text-black py-2 px-6 rounded-[5px] shadow-lg hover:bg-blue-600 transition-colors"
           >
             Get Started
@@ -144,27 +161,169 @@ const HomePage = () => {
       </section>
 
       <section className="px-[112px] bg-[#1A1B1A]">
-        <div >
+        <div>
           <h1 className="text-4xl font-bold mb-8">
             Introducing <span className="text-[#D7B257]">Beetle Screener,</span>{" "}
             <br /> Your Investment Buddy
           </h1>
 
-          <div className="flex space-x-4">
-            
-          <div className="relative">
-  <BoxTopSm className="w-full h-full" />
-  <div className="absolute inset-0 flex flex-col items-center overflow-hidden px-4 justify-center text-center">
-  <h2 className="text-[#D7B257] font-bold text-2xl mb-4">Ahead of the curve</h2>
-  <p>Your tool for spotting stocks in motion, identifying uptrends and downtrends to stay ahead with ease.</p>
-</div>
-</div>
+          <div className=" w-full ">
+            <div className="absolute left-0 right-0 -top-16">
+              <LinesSVG />
+            </div>
 
-           
+            <div className="relative  flex justify-evenly mb-6">
+              <div className="relative">
+                <BoxTopSm className="w-full h-full" />
+                <div className="absolute inset-0 flex flex-col items-center overflow-hidden px-4 justify-center text-center">
+                  <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                    Ahead of the curve
+                  </h2>
+                  <p>
+                    Your tool for spotting stocks in motion, identifying
+                    uptrends and downtrends to stay ahead with ease.
+                  </p>
+                  <LeftTopImg />
+                </div>
+              </div>
 
-            <BoxTopLg />
-            <BoxTopSm />
+              <div className="relative">
+                <BoxTopLg className="w-full h-full" />
+                <div className="absolute inset-0 flex flex-col items-center overflow-hidden px-4 justify-center text-center">
+                  <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                    Advanced Insights
+                  </h2>
+                  <p>
+                    Harnessing advanced Time-Price Cycle Theory delivers
+                    unparalleled accuracy and predictive precision.
+                  </p>
+                  <CenTopImg />
+                </div>
+              </div>
+
+              <div className="relative">
+                <BoxTopSm className="w-full h-full" />
+                <div className="absolute inset-0 flex flex-col items-center overflow-hidden px-4 justify-center text-center">
+                  <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                    Advanced Insights
+                  </h2>
+                  <p>
+                    Harnessing advanced Time-Price Cycle Theory delivers
+                    unparalleled accuracy and predictive precision.
+                  </p>
+                  <RigTopImg />
+                </div>
+              </div>
+            </div>
+
+            <div className="relative  flex gap-8">
+              <div className="relative">
+                <BoxBottom className="w-full h-full" />
+                <div className="absolute inset-0 flex items-center justify-between overflow-hidden px-4">
+                  <div className="flex flex-col text-left w-1/2">
+                    <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                      Two Powerful Models
+                    </h2>
+                    <p>
+                      Beetle Screener combines AI-driven analysis with advanced
+                      market cycle theory to give you a complete trading
+                      advantage
+                    </p>
+                    <br />
+                    <p>Beetle’s AI Based Model</p>
+                    <br />
+                    <p>Beetle’s Time-Price Cycle Model</p>
+                  </div>
+                  <InterBeteels className="ml-4" />
+                </div>
+              </div>
+
+              <div className="relative">
+                <BoxBottom className="w-full h-full" />
+                <div className="absolute inset-0 flex items-center justify-between overflow-hidden px-4">
+                  <div className="flex flex-col text-left w-1/2">
+                    <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                      Beetle’s AI-Based Model
+                    </h2>
+
+                    <p>
+                      Trading NIFTY, FNO, or stocks? Our model delivers tailored
+                      insights to support your decisions. Harness AI for smart
+                      analysis and precise insights across assets for informed
+                      trading
+                    </p>
+                    <br />
+                    <h6 className="text-[#D7B257]"> Learn More </h6>
+                  </div>
+                  <ChartBottom className="ml-4" />
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <h2 className="text-3xl  mt-10 font-bold text-[#D7B257] ">
+          Beetle’s AI-Based Model
+        </h2>
+        <h2 className="text-2xl font-light mb-4">
+          Advanced Market Intelligence
+        </h2>
+
+        <div className="flex flex-col md:flex-row space-x-16  text-white">
+          {/* Left Section */}
+          <div className="w-full md:w-1/3">
+            <div className="flex flex-col items-start">
+              <ScreenAiMap className="w-[363px] z-40" />
+
+              <div className="flex w-full transform translate-x-28">
+                <button className="border flex rounded-lg text-white font-bold py-2 px-4 w-auto">
+                  Start Trading
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Section */}
+          <div className="w-full   md:w-2/3 md:pl-6 mt-6 md:mt-0">
+            <p className="text-lg  mb-2">
+              Our AI-powered screener analyzes multiple market <br/> segments with
+              precision:
+            </p>
+            <ul className="list-disc text-[#D7B257] pl-5">
+              <li>
+                <span className="font-bold">Commodities:</span>{" "}
+                <span className="text-white">
+                  Spot trends and key price levels
+                </span>
+              </li>
+              <li>
+                <span className="font-bold">Forex:</span>{" "}
+                <span className="text-white">
+                  Insights on 6 major currency pairs
+                </span>
+              </li>
+              <li>
+                <span className="font-bold">Indices:</span>{" "}
+                <span className="text-white">
+                  NIFTY, BANKNIFTY, FINNIFTY analysis
+                </span>
+              </li>
+              <li>
+                <span className="font-bold">Stocks:</span>{" "}
+                <span className="text-white">
+                  Covers FNO and NSE-listed equities
+                </span>
+              </li>
+            </ul>
+            <p className="mt-4">
+              Benefit from AI-driven market insights to enhance your trading <br/>
+              strategy across  diverse asset classes.
+            </p>
+
+            <p className="text-[#D7B257] font-bold mt-4 flex justify-end">Learn more</p>
+          </div>
+        
+
         </div>
       </section>
     </main>
