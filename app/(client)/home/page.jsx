@@ -163,16 +163,16 @@ const HomePage = () => {
       <section className="px-[112px] bg-[#1A1B1A]">
         <div>
           <h1 className="text-4xl font-bold mb-8">
-            Introducing <span className="text-[#D7B257]">Beetle Screener,</span>{" "}
+            Introducing <span className="text-[#D7B257]">Beetle Screener,</span>
             <br /> Your Investment Buddy
           </h1>
 
-          <div className=" w-full ">
+          <div className=" w-full  px-10 ">
             <div className="absolute left-0 right-0 -top-16">
               <LinesSVG />
             </div>
 
-            <div className="relative  flex justify-evenly mb-6">
+            <div className="relative  flex justify-between mb-6">
               <div className="relative">
                 <BoxTopSm className="w-full h-full" />
                 <div className="absolute inset-0 flex flex-col items-center overflow-hidden px-4 justify-center text-center">
@@ -216,7 +216,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="relative  flex gap-8">
+            <div className="relative justify-between flex gap-8">
               <div className="relative">
                 <BoxBottom className="w-full h-full" />
                 <div className="absolute inset-0 flex items-center justify-between overflow-hidden px-4">
@@ -262,14 +262,14 @@ const HomePage = () => {
           </div>
         </div>
 
-        <h2 className="text-3xl  mt-10 font-bold text-[#D7B257] ">
+        <h2 className="text-3xl  mt-28 font-bold text-[#D7B257] ">
           Beetle’s AI-Based Model
         </h2>
         <h2 className="text-2xl font-light mb-4">
           Advanced Market Intelligence
         </h2>
 
-        <div className="flex flex-col md:flex-row space-x-16  text-white">
+        <div className="flex flex-col md:flex-row space-x-16 mx-20 mt-12 text-white">
           {/* Left Section */}
           <div className="w-full md:w-1/3">
             <div className="flex flex-col items-start">
@@ -291,25 +291,25 @@ const HomePage = () => {
             </p>
             <ul className="list-disc text-[#D7B257] pl-5">
               <li>
-                <span className="font-bold">Commodities:</span>{" "}
+                <span className="font-bold">Commodities:</span>
                 <span className="text-white">
                   Spot trends and key price levels
                 </span>
               </li>
               <li>
-                <span className="font-bold">Forex:</span>{" "}
+                <span className="font-bold">Forex:</span>
                 <span className="text-white">
                   Insights on 6 major currency pairs
                 </span>
               </li>
               <li>
-                <span className="font-bold">Indices:</span>{" "}
+                <span className="font-bold">Indices:</span>
                 <span className="text-white">
                   NIFTY, BANKNIFTY, FINNIFTY analysis
                 </span>
               </li>
               <li>
-                <span className="font-bold">Stocks:</span>{" "}
+                <span className="font-bold">Stocks:</span>
                 <span className="text-white">
                   Covers FNO and NSE-listed equities
                 </span>
