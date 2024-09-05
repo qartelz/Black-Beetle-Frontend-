@@ -13,7 +13,7 @@ import Button from "@/components/button/page";
 import { useState } from "react";
 import Session from "./sections/Section";
 
-const navs = ['Summary', 'Analysis', 'History', 'News', 'Prediction v/s Actual Analysis']
+const navs = ['Summary', 'Analysis', 'History', 'Prediction v/s Actual Analysis']
 
 export default function exportStock() {
 
@@ -75,7 +75,7 @@ export default function exportStock() {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 flex flex-col bg-white px-60">
+            <div className="flex-1 flex flex-col bg-white px-10 xl:px-60">
                 <div className="flex flex-col flex-1 bg-[#2F2F2F] -mt-20 border-t-2 border-l-2 border-r-2 border-[#D7B257C9] rounded-t-xl z-10">
                     <div className="flex my-4 gap-x-5 px-10">
                         {
