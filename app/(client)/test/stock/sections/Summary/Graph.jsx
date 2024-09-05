@@ -1,132 +1,151 @@
-"use client";
+  "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import AnnotationPlugin from "chartjs-plugin-annotation";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
+  import React, { useRef, useEffect, useState } from "react";
+  import AnnotationPlugin from "chartjs-plugin-annotation";
+  import { Line } from "react-chartjs-2";
+  import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler,
+  } from "chart.js";
+  import { sampleStockData } from "./data";
+  import { average, max, min } from "@/utils/Maths";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  AnnotationPlugin
-);
-
-export default function Graph(props) {
-  const ref = useRef(null);
-  const [gradient, setGradient] = useState(null);
-
-  useEffect(() => {
-    if (ref.current) {
-      const ctx = ref.current.ctx;
-      if (ctx) {
-        const gradientFill = ctx.createLinearGradient(0, 0, 0, 400);
-        gradientFill.addColorStop(0, "#58B9FF");
-        gradientFill.addColorStop(0.5, "#05050530");
-        setGradient(gradientFill);
-      }
-    }
-  }, [ref.current]);
-
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: true,
-        borderColor: "#58B9FF",
-        backgroundColor: gradient,
-        tension: 0.1,
-        pointRadius: 0,
-        borderWidth: 2,
-      },
-      {
-        label: "Buy",
-        data: [70, 70, 70, 70, 70, 70, 70],
-        fill: false,
-        borderColor: "rgba(255,99,132,1)",
-        pointRadius: 0,
-        borderWidth: 2,
-      },
-      {
-        label: "Target Line 2",
-        data: [50, 50, 50, 50, 50, 50, 50],
-        fill: false,
-        borderColor: "rgba(54,162,235,1)",
-        pointRadius: 0,
-        borderWidth: 2,
-      },
-      {
-        label: "Target Line 3",
-        data: [30, 30, 30, 30, 30, 30, 30],
-        fill: false,
-        borderColor: "rgba(255,206,86,1)",
-        pointRadius: 0,
-        borderWidth: 2,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: false,
-      },
-      tooltip: {
-        enabled: false,
-      },
-      annotation: {
-        drawTime: "afterDatasetsDraw", // Draw annotations after datasets
-        annotations: data.datasets.map(({ data }) => ({
-          type: "label",
-          content: data[data.length - 1],
-          color: "white",
-          enabled: true,
-          position: {
-            x: "end",
-            y: "start",
-          },
-          xAdjust: 0,
-          yAdjust: -25,
-          xValue: data.length - 1,
-          yValue: data[data.length - 1],
-        })),
-      },
-    },
-    scales: {
-      x: {
-        display: false,
-      },
-      y: {
-        display: false,
-      },
-    },
-  };
-
-  return (
-    <div {...props} className={`${props.className} w-full h-[250px]`}>
-      <Line ref={ref} data={data} options={options} />
-    </div>
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler,
+    AnnotationPlugin
   );
-}
+
+  export default function Graph(props) {
+    const ref = useRef(null);
+    const [gradient, setGradient] = useState(null);
+
+    useEffect(() => {
+      if (ref.current) {
+        const ctx = ref.current.ctx;
+        if (ctx) {
+          const gradientFill = ctx.createLinearGradient(0, 0, 0, 400);
+          gradientFill.addColorStop(0, "#58B9FF");
+          gradientFill.addColorStop(0.8, "#05050530");
+          setGradient(gradientFill);
+        }
+      }
+    }, [ref]);
+
+    const data = {
+      labels: [...Object.keys(sampleStockData).map((i) =>
+        new Date(i).toLocaleDateString(undefined, { month: "short", day: "numeric" })
+      ),"","","","","","",""],
+      datasets: [
+        {
+          label: "Buy",
+          data: Object.keys(sampleStockData).map((key) => average(Object.keys(sampleStockData).map((key) => sampleStockData[key]["2. high"]))),
+          fill: false,
+          borderColor: "#1DF81F",
+          pointRadius: 1,
+          borderWidth: 2,
+        },
+        {
+          label: "Target",
+          data: Object.keys(sampleStockData).map((key) => average(Object.keys(sampleStockData).map((key) => sampleStockData[key]["3. low"]))),
+          fill: false,
+          borderColor: "#F63C6B",
+          pointRadius: 1,
+          borderWidth: 2,
+        },
+        {
+          label: "Loss",
+          data: Object.keys(sampleStockData).map((key) => sampleStockData[key]["4. close"]),
+          fill: false,
+          borderColor: "rgba(255,206,86,1)",
+          pointRadius: 1,
+          borderWidth: 2,
+        },
+        {
+          label: "Sales",
+          data: Object.keys(sampleStockData).map((key) => sampleStockData[key]["1. open"]),
+          fill: true,
+          borderColor: "#58B9FF",
+          backgroundColor: gradient,
+          tension: 0.1,
+          pointRadius: 1,
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "category",
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          beginAtZero: false,
+          min: min(data.datasets[3].data) - 5,
+          max: max(data.datasets[3].data) + 5,
+          grid: {
+            display: false,
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: false,
+        },
+        tooltip: {
+          enabled: true,
+        },
+        annotation: {
+          annotations: data.datasets.map((dataset, index) => {
+            const lastDataIndex = dataset.data.length - 1;
+            return {
+              type: "label",
+              content: `${dataset.data[lastDataIndex]}`,
+              position: {
+                x: "end",
+                y: "start",
+              },
+              xValue: lastDataIndex,
+              yValue: dataset.data[lastDataIndex],
+              backgroundColor: dataset.label === "Buy" ? "yellow" : dataset.label === "Target" ? "green" : dataset.label === "Loss" ? "red" : "#58B9FF",
+              color: "black",
+              borderRadius: 5,
+              font: {
+                size: 12,
+                weight: "bold",
+              },
+              yAdjust: -10 * (index + 1),
+              xAdjust: 50,
+            };
+          }),
+        },
+      },
+    };
+
+    return (
+      <div {...props} className={`${props.className} w-full h-[450px]`}>
+        <Line ref={ref} data={data} options={options} />
+      </div>
+    );
+  }
