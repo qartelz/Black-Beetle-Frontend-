@@ -20,6 +20,9 @@ export default function SummarySection() {
                 </li>
             </ul>
         </div>
+        <div className="w-full">
+            
+        </div>
         <div className="flex w-full gap-x-5 justify-between rounded-lg my-5 text-white">
             {/* Buy Section */}
             <div className="flex flex-1 flex-col justify-center bg-[#393939] p-5 rounded">
