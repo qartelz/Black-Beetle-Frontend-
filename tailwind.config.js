@@ -20,7 +20,16 @@ module.exports = {
       colors: {
         success: "#1DF81F",
         danger: "#FF135B",
-      }
+      },
+      animation: {
+        'expand-y': 'expand-y 0.3s',
+      },
+      keyframes: {
+        'expand-y': {
+          '0%': { scaleY: '0.7',opacity: '0' },
+          '100%': { scaleY: '1',opacity: '1' },
+        },
+      },
     },
   },
   plugins: [],
