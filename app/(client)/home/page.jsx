@@ -15,6 +15,7 @@ import BoxBottom from "@/assets/svg/BoxBottom";
 import InterBeteels from "@/assets/svg/InterBeteels";
 import ChartBottom from "@/assets/svg/ChartBottom";
 import ScreenAiMap from "@/assets/svg/ScreenAiMap";
+import PriceTimeImg from "@/assets/svg/PriceTimeImg";
 
 const LinesSVG = () => (
   <div className=" flex items-center justify-center">
@@ -286,8 +287,8 @@ const HomePage = () => {
           {/* Right Section */}
           <div className="w-full   md:w-2/3 md:pl-6 mt-6 md:mt-0">
             <p className="text-lg  mb-2">
-              Our AI-powered screener analyzes multiple market <br/> segments with
-              precision:
+              Our AI-powered screener analyzes multiple market <br /> segments
+              with precision:
             </p>
             <ul className="list-disc text-[#D7B257] pl-5">
               <li>
@@ -316,14 +317,87 @@ const HomePage = () => {
               </li>
             </ul>
             <p className="mt-4">
-              Benefit from AI-driven market insights to enhance your trading <br/>
-              strategy across  diverse asset classes.
+              Benefit from AI-driven market insights to enhance your trading{" "}
+              <br />
+              strategy across diverse asset classes.
             </p>
 
-            <p className="text-[#D7B257] font-bold mt-4 flex justify-end">Learn more</p>
+            <p className="text-[#D7B257] font-bold mt-4 flex justify-end">
+              Learn more
+            </p>
           </div>
-        
+        </div>
 
+        <div className=" text-end">
+          <h2 className="text-3xl  mt-28 font-bold text-[#D7B257] ">
+            Beetle’s AI-Based Model
+          </h2>
+          <h2 className="text-2xl font-light mb-4">
+            Advanced Market Intelligence
+          </h2>
+        </div>
+
+        <div className="flex flex-col md:flex-row space-x-16 mx-20 mt-12 text-white">
+          {/* Left Section */}
+
+          <div className="w-full ">
+            <div className="flex flex-col items-start">
+              <p className="text-lg  mb-2">
+                Our AI-powered screener analyzes multiple market <br /> segments
+                with precision:
+              </p>
+              <ul className="list-disc text-[#D7B257] pl-5">
+                <li>
+                  <span className="font-bold">Commodities:</span>
+                  <span className="text-white">
+                    Spot trends and key price levels
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">Forex:</span>
+                  <span className="text-white">
+                    Insights on 6 major currency pairs
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">Indices:</span>
+                  <span className="text-white">
+                    NIFTY, BANKNIFTY, FINNIFTY analysis
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">Stocks:</span>
+                  <span className="text-white">
+                    Covers FNO and NSE-listed equities
+                  </span>
+                </li>
+              </ul>
+              <p className="mt-4">
+                Benefit from AI-driven market insights to enhance your trading{" "}
+                <br />
+                strategy across diverse asset classes.
+              </p>
+
+              <p className="text-[#D7B257] font-bold mt-4 flex justify-end">
+                Learn more
+              </p>
+            </div>
+          </div>
+
+          {/* Right Section */}
+
+          <div className="w-full flex flex-col  items-end  md:pl-6 mt-6 md:mt-0">
+            <div className=" h-96  ">
+            <PriceTimeImg className="  h-[300px] w-96 scale-110  z-40" />
+
+
+            </div>
+            
+
+            <div className=" w-full  flex flex-col  items-center transform translate-x-28">
+             
+            </div>
+          </div>
         </div>
       </section>
     </main>
