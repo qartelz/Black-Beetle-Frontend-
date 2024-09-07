@@ -27,7 +27,7 @@ export default function AnalysisSection() {
     return <div className="text-xl flex flex-col">
         <span className="text-[#D7B257C9] font-extrabold">Beetle has detected</span>
         <Graph dataset={dataset} setDataset={setDataset} />
-        <div className="w-1/3 flex mt-5">
+        <div className="w-full lg:w-1/3 flex mt-5">
             <div className="flex-1 flex flex-col items-center">
                 <div className={`flex items-center ${dataset.label !== "Bullish" && "invisible"}`}>
                     <Circle color="#34C759" radius={10} />

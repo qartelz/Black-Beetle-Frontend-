@@ -4,15 +4,15 @@ import Graph from "./Graph";
 export default function PredictionSection({ subscribed }) {
     return !subscribed ? <div className="text-xl flex flex-col">
 
-        <div className="w-full flex justify-between">
+        <div className="w-full flex flex-col md:flex-row justify-between">
             <div className="flex-1">
-                <div className="w-[80%] flex flex-col">
+                <div className="w-full md:w-[80%] flex flex-col">
                     <span className="text-[#D7B257C9] font-extrabold">PREDICTION</span>
                     <Graph />
                 </div>
             </div>
             <div className="flex-1">
-                <div className="w-[80%] flex flex-col">
+                <div className="w-full md:w-[80%] flex flex-col">
                     <span className="text-[#D7B257C9] font-extrabold">ACTUAL</span>
                     <Graph />
                 </div>
@@ -20,7 +20,7 @@ export default function PredictionSection({ subscribed }) {
         </div>
         <div className="h-8"></div>
 
-        <div className="w-full flex justify-between">
+        <div className="w-full flex flex-col md:flex-row justify-between">
             <div className="flex-1 flex flex-col">
                 <span className="text-[#D7B257C9] font-extrabold">Analysis of Results: </span>
                 <p>

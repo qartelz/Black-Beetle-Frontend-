@@ -28,7 +28,7 @@ export default function exportStock() {
 
         {/* MAIN CONTENT */}
         <div className="flex-1 flex flex-col">
-            <div className="bg-[#1F1D1A] px-60 py-20">
+            <div className="bg-[#1F1D1A] px-10 lg:px-60 py-20">
                 <div className="fixed w-full h-screen overflow-hidden pointer-events-none top-0 pt-20">
                     <Curve />
                 </div>
@@ -39,9 +39,9 @@ export default function exportStock() {
                     <ArrowRight className="ml-3" />
                     <span className="text-[#FFFFFFB2] ml-3">Microsoft</span>
                 </div>
-                <div className="flex justify-between items-center mt-5">
+                <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center mt-5">
                     <div className="flex-1 relative flex items-center">
-                        <div className="bg-white rounded-xl items-center justify-center w-fit p-4">
+                        <div className="mt-10 lg:mt-0 bg-white rounded-xl items-center justify-center w-fit p-4">
                             <div className="w-[60px] h-[60px]">
                                 <Image src={Ms} alt="logo" layout="fill" className="!sticky" />
                             </div>
@@ -54,34 +54,34 @@ export default function exportStock() {
                             </span>
                         </div>
                     </div>
-                    <div className="flex-1 flex justify-between items-center">
+                    <div className="w-full lg:flex-1 flex justify-between items-center mt-10 lg:mt-0">
                         <div className="flex-1 flex flex-col items-center">
-                            <span className="font-extrabold text-white text-2xl">BTST</span>
+                            <span className="font-extrabold text-white text-lg lg:text-2xl">BTST</span>
                             <span className="text-xs text-[#FFFFFFA1]">Type</span>
                         </div>
                         <div className="flex-1 flex flex-col items-center">
-                            <span className="font-extrabold text-white text-2xl">Equity</span>
+                            <span className="font-extrabold text-white text-lg lg:text-2xl">Equity</span>
                             <span className="text-xs text-[#FFFFFFA1]">Asset</span>
                         </div>
                         <div className="flex-1 flex flex-col items-center">
-                            <span className="font-extrabold text-white text-2xl">30th August</span>
+                            <span className="font-extrabold text-white text-lg lg:text-2xl">30th August</span>
                             <span className="text-xs text-[#FFFFFFA1]">Trigger Date</span>
                         </div>
                     </div>
-                    <div className="flex-1 flex justify-end items-center flex-col">
-                        <div className="w-3/4">
+                    <div className="flex-1 mt-5 lg:mt-0 flex justify-end items-center flex-col">
+                        <div className="w-full lg:w-3/4">
                             <Graph />
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="flex-1 flex flex-col bg-white px-10 xl:px-60">
+            <div className="flex-1 flex flex-col bg-white px-5 md:px-12 xl:px-60">
                 <div className="flex flex-col flex-1 bg-[#2F2F2F] -mt-20 border-t-2 border-l-2 border-r-2 border-[#D7B257C9] rounded-t-xl z-10">
-                    <div className="flex my-4 gap-x-5 px-10">
+                    <div className="w-full flex my-4 py-2 gap-x-5 px-10 overflow-x-auto custom-scrollbar">
                         {
                             navs.map((nav, i) => {
-                                if (nav === selectedSection) return <button className="bg-gradient-to-r from-[#C5C5C521] to-[#5F5F5F21] px-3 py-2 rounded-lg hover:to-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
-                                else return <button onClick={() => setSelectedSection(nav)} className="px-3 py-2 rounded-lg hover:bg-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
+                                if (nav === selectedSection) return <button className="w-max bg-gradient-to-r from-[#C5C5C521] to-[#5F5F5F21] px-3 py-2 rounded-lg hover:to-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
+                                else return <button onClick={() => setSelectedSection(nav)} className="w-max px-3 py-0 lg:py2 rounded-lg hover:bg-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
                             })
                         }
                     </div>
