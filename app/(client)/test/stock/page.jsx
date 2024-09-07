@@ -28,7 +28,7 @@ export default function exportStock() {
 
         {/* MAIN CONTENT */}
         <div className="flex-1 flex flex-col">
-            <div className="bg-[#1F1D1A] px-10 lg:px-60 py-20">
+            <div className="bg-[#1F1D1A] px-10 xl:px-60 py-20">
                 <div className="fixed w-full h-screen overflow-hidden pointer-events-none top-0 pt-20">
                     <Curve />
                 </div>
@@ -40,17 +40,17 @@ export default function exportStock() {
                     <span className="text-[#FFFFFFB2] ml-3">Microsoft</span>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center mt-5">
-                    <div className="flex-1 relative flex items-center">
+                    <div className="flex-1 relative flex flex-col lg:flex-row justify-center items-center">
                         <div className="mt-10 lg:mt-0 bg-white rounded-xl items-center justify-center w-fit p-4">
                             <div className="w-[60px] h-[60px]">
                                 <Image src={Ms} alt="logo" layout="fill" className="!sticky" />
                             </div>
                         </div>
-                        <div className="flex flex-col ml-4">
+                        <div className="flex flex-col lg:ml-4 mt-5 lg:mt-0">
                             <span className="text-[#D7B257C9] font-extrabold text-3xl">MSFT</span>
-                            <span className="flex items-center">
+                            <span className="flex justify-center lg:justify-start items-center">
                                 <Circle radius={10} color={'#1DF81F'} />
-                                <span className="ml-2">Open</span>
+                                <span className="ml-1">Open</span>
                             </span>
                         </div>
                     </div>
@@ -78,13 +78,30 @@ export default function exportStock() {
             <div className="flex-1 flex flex-col bg-white px-5 md:px-12 xl:px-60">
                 <div className="flex flex-col flex-1 bg-[#2F2F2F] -mt-20 border-t-2 border-l-2 border-r-2 border-[#D7B257C9] rounded-t-xl z-10">
                     <div className="w-full flex my-4 py-2 gap-x-5 px-10 overflow-x-auto custom-scrollbar">
-                        {
-                            navs.map((nav, i) => {
-                                if (nav === selectedSection) return <button className="w-max bg-gradient-to-r from-[#C5C5C521] to-[#5F5F5F21] px-3 py-2 rounded-lg hover:to-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
-                                else return <button onClick={() => setSelectedSection(nav)} className="w-max px-3 py-0 lg:py2 rounded-lg hover:bg-[#5F5F5F51] transition-all duration-200 ease-in-out">{nav}</button>
-                            })
-                        }
+                        {navs.map((nav, i) => {
+                            if (nav === selectedSection) {
+                                return (
+                                    <button
+                                        key={i}
+                                        className="w-max bg-gradient-to-r from-[#C5C5C521] to-[#5F5F5F21] px-3 py-2 rounded-lg hover:to-[#5F5F5F51] transition-all duration-200 ease-in-out whitespace-nowrap flex-shrink-0"
+                                    >
+                                        {nav}
+                                    </button>
+                                );
+                            } else {
+                                return (
+                                    <button
+                                        key={i}
+                                        onClick={() => setSelectedSection(nav)}
+                                        className="w-max px-3 py-0 lg:py-2 rounded-lg hover:bg-[#5F5F5F51] transition-all duration-200 ease-in-out whitespace-nowrap flex-shrink-0"
+                                    >
+                                        {nav}
+                                    </button>
+                                );
+                            }
+                        })}
                     </div>
+
                     <div className="w-full h-[1px] bg-[#D7B257C9]"></div>
                     <div className="min-h-[70vh] flex flex-col px-10 py-5 overflow-y-auto">
                         <Session name={selectedSection} />

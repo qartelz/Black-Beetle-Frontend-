@@ -17,7 +17,7 @@ function NavbarLink() {
     return <>
         {
             links.map((link, index) => {
-                return <Link className="bg-slate-800 px-3 py-2 rounded-xl" key={index} href={link.path}>{link.title}</Link>
+                return <Link className="px-3 py-2 rounded-xl" key={index} href={link.path}>{link.title}</Link>
             })
         }
     </>
@@ -37,7 +37,7 @@ export default function Navbar({ fixed }) {
             </div>
             <div className="flex items-center relative">
                 <Button className='hidden lg:flex'>Log Out</Button>
-                <Button onClick={() => setOpenMenu(!openMenu)}>
+                <Button className='lg:hidden' onClick={() => setOpenMenu(!openMenu)}>
                     <Menu />
                     {
                         openMenu && <div className="w-full h-screen fixed inset-0 z-40">
