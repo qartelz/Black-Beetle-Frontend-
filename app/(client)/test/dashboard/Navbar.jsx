@@ -27,7 +27,7 @@ export default function Navbar({ fixed }) {
             <div className="h-[70px]">
                 <Image className="!static object-contain" src={ScreenerLogo} alt="Logo" layout="fill" />
             </div>
-            <div className="flex gap-10">
+            <div className="lg:flex gap-10 hidden">
                 <NavbarLink />
             </div>
             <div>
