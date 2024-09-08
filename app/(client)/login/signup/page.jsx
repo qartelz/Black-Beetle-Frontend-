@@ -99,9 +99,9 @@ export default function LoginPage() {
                         <div className="w-[123px] h-[123px] mt-[86px]">
                             <CheckIn />
                         </div>
-                        <span className="text text-3xl lg:text-[57.33px] font-extrabold">Account Verified!</span>
+                        <span className="text text-3xl my-2 lg:my-[34px] lg:text-[57.33px] font-bold">Account Verified!</span>
                         <span>Welcome to Black Beetle</span>
-                        <Link href={"/dashboard"} className="w-full flex justify-center font-normal lg:w-[269px] text-[22px] my-[49px] text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-2">
+                        <Link href={"/dashboard"} className="w-full mt-2 lg:mt-[73px] flex justify-center font-normal lg:w-[269px] text-[22px] my-[49px] text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-2">
                             Go to Dashboard
                         </Link>
                     </div>
