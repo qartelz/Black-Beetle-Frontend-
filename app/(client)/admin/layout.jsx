@@ -1,8 +1,8 @@
 import Sidebar from "./Sidebar";
 
 export default function Layout({ children }) {
-    return <div className="w-full h-screen flex bg-secondary">
-        <div className="w-52 h-screen overflow-y-auto">
+    return <div className="w-full h-screen flex flex-col lg:flex-row bg-secondary">
+        <div className="h-20 w-full lg:w-52 lg:h-screen overflow-y-auto">
             <Sidebar />
         </div>
         <div className="flex-1 h-screen overflow-y-auto">
