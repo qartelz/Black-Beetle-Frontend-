@@ -1,9 +1,12 @@
+"use client";
+
 import Star from "@/assets/svg/Star";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function StockCard({ stockData }) {
     return (
-        <div className="stock-card bg-gradient-stock-card rounded-[30px] border-[#C58F0A] p-4 shadow-lg border-4 flex items-center relative">
+        <Link href={"/stock"} className="stock-card bg-gradient-stock-card rounded-[30px] border-[#C58F0A] p-4 shadow-lg border-4 flex items-center relative">
             <div className="stock-card__image-wrapper w-[100px] h-[100px] -ml-[50px] -mt-[100px] absolute p-5 bg-white rounded-[35px]">
                 <Image src={stockData.image} layout="fill" alt={stockData.symbol} className="!static" />
             </div>
@@ -22,6 +25,6 @@ export default function StockCard({ stockData }) {
                     </span>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
