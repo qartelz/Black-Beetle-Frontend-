@@ -1,8 +1,16 @@
-import { LucideArrowLeft, LucideArrowRight, LucideDiamond, LucidePackage, LucidePersonStanding } from "lucide-react";
+"use client";
+
+import { LucideArrowLeft, LucideArrowRight, LucideDiamond, LucidePackage, LucidePersonStanding, LucidePlus, LucideX } from "lucide-react";
 import { tableData } from "./data";
 import Button from "@/components/button/page";
+import Modal from "@/components/modal";
+import Input from "@/components/input";
+import { useState } from "react";
 
 export default function Page() {
+
+    const [openCreatePopup, setOpenCreatePopup] = useState(false)
+
     return <div className="w-full px-5 py-5 flex flex-col">
         <span className="text-2xl font-bold text-white">Dashboard</span>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-4">
@@ -35,6 +43,15 @@ export default function Page() {
             </div>
         </div>
         <div className="w-full flex flex-col bg-primary p-5 rounded-lg mt-5">
+            <div className="flex mb-10 items-center justify-between">
+                <div><span className="text-xl font-bold">Recent Orders</span></div>
+                <div>
+                    <Button onClick={() => setOpenCreatePopup(true)} className="bg-slate-700 hover:bg-slate-800 !bg-opacity-40">
+                        <LucidePlus size={20} />
+                        <span className="ml-2">Create new</span>
+                    </Button>
+                </div>
+            </div>
             <div className="w-full overflow-x-auto">
                 <table className="w-full">
                     <thead>
@@ -89,5 +106,31 @@ export default function Page() {
                 </div>
             </div>
         </div>
+
+        <Modal open={openCreatePopup} onClose={() => setOpenCreatePopup(false)}>
+            <div className="bg-primary w-[100%] md:w-[500px] p-5 rounded-lg">
+                <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold">Create new order</span>
+                    <Button onClick={() => setOpenCreatePopup(false)} className="bg-transparent hover:bg-slate-800 !bg-opacity-40" >
+                        <span className="text-red-700">Close</span>
+                    </Button>
+                </div>
+                <div className="w-full flex flex-col mt-5">
+                    <Input variant="solid" label="Stock/Index" />
+                    <Input variant="solid" label="Segment" className="mt-2" />
+                    <Input variant="solid" label="Role" className="mt-2" />
+                    <Input variant="solid" label="Expiry" className="mt-2" type="date" />
+                    <Input variant="solid" label="Buy" className="mt-2" />
+                    <Input variant="solid" label="Target" className="mt-2" />
+                    <Input variant="solid" label="SL" className="mt-2" />
+                    <Input variant="solid" label="Type of trade" className="mt-2" />
+                    <Input variant="solid" label="Square off" className="mt-2" />
+
+                    <Button className="!bg-slate-700 hover:!bg-slate-800 active:!bg-slate-900 mt-5">
+                        Create
+                    </Button>
+                </div>
+            </div>
+        </Modal>
     </div>
 }
