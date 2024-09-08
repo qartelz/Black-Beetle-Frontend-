@@ -41,7 +41,7 @@ export default function LoginPage() {
                         <CountryInput />
                     </div>
 
-                    <button onClick={()=>setOpenCodeModal(true)} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
+                    <button onClick={() => setOpenCodeModal(true)} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                         Continue
                     </button>
                     <span className="mt-[25px] text-[12px] w-full text-center">By logging in, you agree to follow our <Link href={""} className="text-[#00BDDD]"><u>terms of service</u></Link></span>
@@ -86,9 +86,9 @@ export default function LoginPage() {
                         <div className="w-[123px] h-[123px] mt-[86px]">
                             <CheckIn />
                         </div>
-                        <span className="text text-3xl lg:text-[57.33px] font-extrabold">Account Verified!</span>
+                        <span className="text text-3xl my-2 lg:my-[34px] lg:text-[57.33px] font-bold">Account Verified!</span>
                         <span>Welcome to Black Beetle</span>
-                        <Link href={"/dashboard"} className="w-full flex justify-center font-normal lg:w-[269px] text-[22px] my-[49px] text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-2">
+                        <Link href={"/dashboard"} className="w-full mt-2 lg:mt-[73px] flex justify-center font-normal lg:w-[269px] text-[22px] my-[49px] text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-2">
                             Go to Dashboard
                         </Link>
                     </div>
