@@ -52,7 +52,3 @@ ul.list-marker-yellow ::marker {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #86703B;
 }
-
-*{
-  transition: inherit;
-}

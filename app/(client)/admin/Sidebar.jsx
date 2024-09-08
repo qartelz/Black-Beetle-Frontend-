@@ -16,7 +16,7 @@ export default function Sidebar() {
     const [openSidebar, setOpenSidebar] = useState(false)
 
     return <div className="w-full h-full flex transition-all duration-200">
-        <div className={`flex-col bg-primary fixed lg:static h-screen z-50 ${!openSidebar && 'hidden'} lg:flex`}>
+        <div className={`flex-col bg-primary fixed lg:static h-screen z-30 ${!openSidebar && 'hidden'} lg:flex`}>
             <div className="flex-1 bg-primary py-5 rounded-xl flex flex-col">
                 <span className="text-2xl text-white font-bold px-4 pb-4">Admin</span>
                 <div className="px-4">
@@ -31,7 +31,7 @@ export default function Sidebar() {
             </div>
         </div>
 
-        {openSidebar && <div onClick={()=>setOpenSidebar(false)} className="z-40 bg-primary bg-opacity-80 w-full h-screen fixed backdrop-blur-[2px]"></div>}
+        {openSidebar && <div onClick={()=>setOpenSidebar(false)} className="z-20 bg-primary bg-opacity-80 w-full h-screen fixed backdrop-blur-[2px]"></div>}
 
         <div className="flex lg:hidden bg-primary w-full h-full items-center px-3 ">
             <Button onClick={()=>setOpenSidebar(true)} className='w-fit h-fit bg-slate-800'>
