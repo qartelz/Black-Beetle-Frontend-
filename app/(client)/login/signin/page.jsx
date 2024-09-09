@@ -65,10 +65,10 @@ export default function LoginPage() {
                     <span className="text-[#999999] text-lg lg:text-[22px] mt-2 lg:mt-[15px]">
                         Enter the verification code sent to your phone
                     </span>
-                    <div className="w-full flex justify-center mt-5 lg:mt-[67px]">
+                    <div className="w-full flex justify-center mt-5 lg:mt-10">
                         <OtpBox />
                     </div>
-                    <span className="text-[#999999] text-[22px] mt-5 lg:mt-[60px]">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
+                    <span className="text-[#999999] text-[22px] mt-5 lg:mt-10">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
                     <center>
                         <button onClick={() => { setOpenCheckInModal(true); setOpenCodeModal(false) }} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                             Sign In

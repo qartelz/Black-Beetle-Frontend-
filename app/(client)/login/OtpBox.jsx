@@ -49,7 +49,7 @@ export default function OtpBox() {
                     {digit ? (
                         <GradientBorderDiv
                             gradientColors={["#D7B257", "#715E2E"]}
-                            className="rounded-xl text-xl lg:text-[68px] font-extrabold w-20 h-20 lg:w-[130px] lg:h-[108px] flex justify-center items-center"
+                            className="rounded-xl text-xl lg:text-[68px] font-extrabold w-20 h-20 lg:w-[100px] lg:h-[100px] flex justify-center items-center"
                         >
                             <div className="w-full h-full text-center bg-black">
                                 <input
@@ -65,7 +65,7 @@ export default function OtpBox() {
                             </div>
                         </GradientBorderDiv>
                     ) : (
-                        <div className="border rounded-xl text-[68px] font-extrabold border-[#9F9595] bg-[#454545] w-20 h-20 lg:w-[130px] lg:h-[108px] flex justify-center items-center">
+                        <div className="border rounded-xl text-[68px] font-extrabold border-[#9F9595] bg-[#454545] w-20 h-20 lg:w-[100px] lg:h-[100px] flex justify-center items-center">
                             <input
                                 ref={inputs[index]}
                                 type="tel"

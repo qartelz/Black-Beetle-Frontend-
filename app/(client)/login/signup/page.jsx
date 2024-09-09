@@ -31,7 +31,7 @@ export default function LoginPage() {
                     <LogoGold />
                 </div>
 
-                <span className="lg:mt-[111px] mt-10 text-3xl lg:text-[59.13px] ">Create new account</span>
+                <span className="lg:mt-[5vh] mt-10 text-3xl lg:text-[59.13px] ">Create new account</span>
                 <span className="text-[22px] text-[#999999] mt-[15px]">Have an account? <Link href={"/login/signin"} className="text-[#D7B257]"> <u>Login</u> </Link></span>
 
                 <div className="max-w-[495px] w-full lg:w-[495px] mt-10 flex flex-col">
@@ -48,13 +48,13 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    <div className="mt-[28px] text-[14px] font-semibold text-[#999999]">
+                    <div className="mt-5 text-[14px] font-semibold text-[#999999]">
                         Phone
                         <div className="w-[6px]" />
                         <CountryInput />
                     </div>
 
-                    <button onClick={() => { setOpenCodeModal(true) }} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
+                    <button onClick={() => { setOpenCodeModal(true) }} className="mt-5 text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                         Continue
                     </button>
                     <span className="mt-[25px] text-[12px] w-full text-center">By logging in, you agree to follow our <Link href={""} className="text-[#00BDDD]"><u>terms of service</u></Link></span>
@@ -62,8 +62,8 @@ export default function LoginPage() {
             </div>
 
             <div className="flex-1 relative hidden lg:flex">
-                <div className="w-[250px] h-[300px] xl:w-[407px] xl:h-[522px] bottom-0 absolute right-0">
-                    <Image src={SandGlass} layout="fill" />
+                <div className="w-[250px] h-[300px] xl:w-[350px] xl:h-[400px] bottom-0 absolute right-0">
+                    <Image src={SandGlass} className="!static" />
                 </div>
             </div>
         </div>
@@ -75,13 +75,13 @@ export default function LoginPage() {
                     <span className="text-3xl mt-5 lg:mt-[75px] lg:text-[59.13px]">
                         Verify your account
                     </span>
-                    <span className="text-[#999999] text-lg lg:text-[22px] mt-2 lg:mt-[15px]">
+                    <span className="text-[#999999] text-lg lg:text-[18px] mt-2 lg:mt-4">
                         Enter the verification code sent to your phone
                     </span>
-                    <div className="w-full flex justify-center mt-5 lg:mt-[67px]">
+                    <div className="w-full flex justify-center mt-5 lg:mt-10">
                         <OtpBox />
                     </div>
-                    <span className="text-[#999999] text-[22px] mt-5 lg:mt-[60px]">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
+                    <span className="text-[#999999] text-[18px] mt-5 lg:mt-10">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
                     <center>
                         <button onClick={() => { setOpenCheckInModal(true); setOpenCodeModal(false) }} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                             Continue
