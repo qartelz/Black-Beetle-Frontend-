@@ -39,13 +39,13 @@ export default function Page() {
                 <table className="w-full">
                     <thead>
                         <tr>
-                            <th className="text-left p-3 pt-0">Stock/Index</th>
-                            <th className="text-left p-3 pt-0">Segment</th>
-                            <th className="text-left p-3 pt-0">Role</th>
-                            <th className="text-left p-3 pt-0">Expiry</th>
-                            <th className="text-left p-3 pt-0">Buy</th>
-                            <th className="text-left p-3 pt-0">Target</th>
-                            <th className="text-left p-3 pt-0">SL</th>
+                            <th className="text-left p-3 pt-0">Order id</th>
+                            <th className="text-left p-3 pt-0">Total items</th>
+                            <th className="text-left p-3 pt-0">Date</th>
+                            <th className="text-left p-3 pt-0">Confirmation date</th>
+                            <th className="text-left p-3 pt-0">Items total</th>
+                            <th className="text-left p-3 pt-0">GST</th>
+                            <th className="text-left p-3 pt-0">Total</th>
                             <th className="text-left p-3 pt-0">Type of trade</th>
                             <th className="text-left p-3 pt-0">Square off</th>
                         </tr>
