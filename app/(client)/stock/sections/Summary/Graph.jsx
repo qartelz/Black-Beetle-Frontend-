@@ -14,8 +14,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-import { sampleStockData } from "./data";
-import { average, max, min } from "@/utils/Maths";
+import { sampleStockData } from "./data";  // Sample stock data
 
 ChartJS.register(
   CategoryScale,
@@ -31,50 +30,36 @@ ChartJS.register(
 
 export default function Graph(props) {
   const ref = useRef(null);
-  const [gradient, setGradient] = useState(null);
 
-  useEffect(() => {
-    if (ref.current) {
-      const ctx = ref.current.ctx;
-      if (ctx) {
-        const gradientFill = ctx.createLinearGradient(0, 0, 0, 400);
-        gradientFill.addColorStop(0, "#58B9FF");
-        gradientFill.addColorStop(0.8, "#05050530");
-        setGradient(gradientFill);
-      }
-    }
-  }, [ref]);
+  // Preparing dataset with color-coded segments based on movement
+  const processedData = Object.keys(sampleStockData).map((key) => {
+    const closePrice = sampleStockData[key]["4. close"];
+    return {
+      time: new Date(key).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+      price: closePrice,
+    };
+  });
 
+  // Separating data into two segments: increasing and decreasing
   const data = {
-    labels: [...Object.keys(sampleStockData).map((i) =>
-      new Date(i).toLocaleDateString(undefined, { month: "short", day: "numeric" })
-    ), "", "", "", "", "", "", ""],
+    labels: processedData.map(d => d.time),
     datasets: [
       {
-        label: "Buy",
-        data: Object.keys(sampleStockData).map((key) => average(Object.keys(sampleStockData).map((key) => sampleStockData[key]["2. high"]))),
+        label: "Stock Movement",
+        data: processedData.map(d => d.price),
+        segment: {
+          borderColor: (ctx) => {
+            const index = ctx.p1DataIndex;
+            if (index === 0) return "#1DF81F"; // First segment as green by default
+            const prevPrice = processedData[index - 1].price;
+            const currentPrice = processedData[index].price;
+            return currentPrice >= prevPrice ? "#1DF81F" : "#F63C6B";  // Green for upward, red for downward
+          },
+          borderWidth: 2,
+        },
         fill: false,
-        borderColor: "#1DF81F",
-        pointRadius: 1,
-        borderWidth: 2,
-      },
-      {
-        label: "Target",
-        data: Object.keys(sampleStockData).map((key) => sampleStockData[key]["3. low"]),
-        fill: false,
-        borderColor: "#F63C6B",
-        pointRadius: 1,
-        borderWidth: 2,
-      },
-      {
-        label: "Sales",
-        data: Object.keys(sampleStockData).map((key) => sampleStockData[key]["1. open"]),
-        fill: true,
-        borderColor: "#58B9FF",
-        backgroundColor: gradient,
+        pointRadius: 10,
         tension: 0.1,
-        pointRadius: 1,
-        borderWidth: 2,
       },
     ],
   };
@@ -91,8 +76,6 @@ export default function Graph(props) {
       },
       y: {
         beginAtZero: false,
-        min: min(data.datasets[data.datasets.length - 1].data) - 5,
-        max: max(data.datasets[data.datasets.length - 1].data) + 5,
         grid: {
           display: false,
         },
@@ -107,30 +90,6 @@ export default function Graph(props) {
       },
       tooltip: {
         enabled: true,
-      },
-      annotation: {
-        annotations: data.datasets.map((dataset, index) => {
-          const lastDataIndex = dataset.data.length - 1;
-          return {
-            type: "label",
-            content: `${dataset.data[lastDataIndex]}`,
-            position: {
-              x: "end",
-              y: "start",
-            },
-            xValue: lastDataIndex,
-            yValue: dataset.data[lastDataIndex],
-            backgroundColor: dataset.label === "Buy" ? "#1DF81F" : dataset.label === "Target" ? "#F63C6B" : dataset.label === "Sales" ? "#58B9FF" : "",
-            color: "black",
-            borderRadius: 5,
-            font: {
-              size: 12,
-              weight: "bold",
-            },
-            yAdjust: -10 * (index + 1),
-            xAdjust: 50,
-          };
-        }),
       },
     },
   };
