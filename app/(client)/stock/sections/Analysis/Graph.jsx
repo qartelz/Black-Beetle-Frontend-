@@ -92,7 +92,7 @@ export default function Graph({ dataset, setDataset, ...props }) {
 
 
   return (
-    <div {...props} className={`${props.className} w-1/3 h-[300px] relative`}>
+    <div {...props} className={`${props.className} w-full lg:w-1/3 h-[300px] relative`}>
       <span className="font-extrabold text-[#34C759] absolute ml-10 mt-10">+0.33%</span>
       <Line ref={ref} data={data} options={options} />
     </div>

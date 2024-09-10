@@ -16,6 +16,8 @@ module.exports = {
       backgroundColor: {
         success: "#1DF81F",
         danger: "#FF135B",
+        primary: "#1A1B1A",
+        secondary: "#2F2F2F",
       },
       colors: {
         success: "#1DF81F",
@@ -26,8 +28,8 @@ module.exports = {
       },
       keyframes: {
         'expand-y': {
-          '0%': { scaleY: '0.7',opacity: '0' },
-          '100%': { scaleY: '1',opacity: '1' },
+          '0%': { scaleY: '0.7', opacity: '0' },
+          '100%': { scaleY: '1', opacity: '1' },
         },
       },
     },

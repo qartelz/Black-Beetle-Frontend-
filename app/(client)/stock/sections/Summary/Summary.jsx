@@ -32,7 +32,7 @@ export default function SummarySection() {
             <Select onSelect={(i) => setOpenCompare(i === "Compare")} options={['Current', 'Compare']} className={'text-sm w-32'} />
         </div>
 
-        <div className="flex w-full gap-x-5 justify-between rounded-lg mt-5 text-white">
+        <div className="flex w-full justify-between flex-col lg:flex-row gap-y-3 lg:gap-y-0 lg:gap-x-5 rounded-lg mt-5 text-white">
             {/* Buy Section */}
             <div className="flex flex-1 flex-col justify-center bg-[#393939] p-5 rounded">
                 <div className="flex items-center">
@@ -60,7 +60,7 @@ export default function SummarySection() {
 
         </div>
 
-        {openCompare && <div className="animate-expand-y flex w-full gap-x-5 justify-between rounded-lg my-5 text-white">
+        {openCompare && <div className="animate-expand-y flex flex-col lg:flex-row w-full gap-y-3 lg:gap-y-0 lg:gap-x-5 justify-between rounded-lg mt-5 text-white">
             {/* Buy Section */}
             <div className="flex flex-1 flex-col justify-center bg-[#2B2A2A] p-5 rounded">
                 <div className="flex items-center">
@@ -88,7 +88,7 @@ export default function SummarySection() {
 
         </div>}
 
-        <span className="text-[#D7B257C9] font-extrabold">Performance:</span>
+        <span className="text-[#D7B257C9] font-extrabold mt-10">Performance:</span>
         <Graph />
 
     </div>

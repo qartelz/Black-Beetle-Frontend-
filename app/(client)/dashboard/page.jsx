@@ -88,7 +88,7 @@ export default function page() {
     }, [selectedFilter, searchQuery])
 
 
-    return <div className="w-full h-screen bg-[#D8D8D8] overflow-y-auto">
+    return <div className="w-full h-screen bg-[#D8D8D8] overflow-y-auto ">
 
         {/* BACKGROUND IMAGE */}
         <div className="fixed w-full h-screen overflow-hidden pointer-events-none">
@@ -99,7 +99,7 @@ export default function page() {
         <Navbar />
 
         {/* MAIN CONTENT */}
-        <div className="px-20 lg:px-40 xl:px-60 flex flex-col">
+        <div className="px-10 lg:px-40 xl:px-60 flex flex-col">
             <span className="text-2xl text-black mt-10">Welcome Back, <span className="font-extrabold text-[#402D00]">User</span>!</span>
 
             {/* SEARCH BAR */}
@@ -123,8 +123,8 @@ export default function page() {
             </div>
 
             {/* STOCK CARD */}
-            <div>
-                <div className="grid grid-cols-2 gap-x-32 gap-y-5 mt-10 justify-center px-10">
+            <div className="mb-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-32 gap-y-5 mt-10 justify-center lg:px-10">
                     {stockData.length % 2 === 0 || stockData.length === 1 ? stockData.map((stock) => (
                         <StockCard key={stock.id} stockData={stock} />
                     ))
@@ -133,9 +133,9 @@ export default function page() {
                         ))
                     }
                 </div>
-                <div className={`mt-5 flex justify-center px-24`}>
+                <div className={`mt-5 grid grid-cols-1 lg:flex justify-center lg:px-24`}>
                     {
-                        stockData.length % 2 !== 0 && stockData.length !== 1 && <div className="w-1/2">
+                        stockData.length % 2 !== 0 && stockData.length !== 1 && <div className="w-full lg:w-1/2">
                             <StockCard stockData={stockData[stockData.length - 1]} />
                         </div>
                     }
