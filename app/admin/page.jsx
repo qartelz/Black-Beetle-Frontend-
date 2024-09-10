@@ -1,209 +1,136 @@
 "use client";
+
+import { LucideArrowLeft, LucideArrowRight, LucideDiamond, LucidePackage, LucidePersonStanding, LucidePlus, LucideX } from "lucide-react";
+import { tableData } from "./data";
+import Button from "@/components/button/page";
+import Modal from "@/components/modal";
+import Input from "@/components/input";
 import { useState } from "react";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+export default function Page() {
 
-const TradeForm = ({ TradeData, onChange, onSave, onClose }) => {
-  const handleChange = (field, value) => {
-    onChange(field, value);
-  };
+    const [openCreatePopup, setOpenCreatePopup] = useState(false)
 
-  return (
-    <div className="bg-white w-full border overflow-hidden rounded-t-xl p-6 text-black shadow-lg">
-      <div className="text-black uppercase text-xl mb-2">
-        <input
-          type="text"
-          name="acronym"
-          value={TradeData.acronym}
-          onChange={(e) => handleChange("acronym", e.target.value)}
-          className="text-lg font-oswald border border-black rounded-lg p-2"
-          placeholder="Stock Name"
-          required
-        />
-      </div>
+    return <div className="w-full px-5 py-5 flex flex-col">
+        <span className="text-2xl font-bold text-white">Dashboard</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+            <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
+                <div className="flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
+                        <LucidePersonStanding size={40} />
+                    </div>
+                    <span className="text-3xl font-bold mt-2">100</span>
+                    <span>Users</span>
+                </div>
+            </div>
+            <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
+                <div className="flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
+                        <LucidePackage size={40} />
+                    </div>
+                    <span className="text-3xl font-bold mt-2">234</span>
+                    <span>Orders</span>
+                </div>
+            </div>
+            <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
+                <div className="flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
+                        <LucideDiamond size={40} />
+                    </div>
+                    <span className="text-3xl font-bold mt-2">100</span>
+                    <span>Premium users</span>
+                </div>
+            </div>
+        </div>
+        <div className="w-full flex flex-col bg-primary p-5 rounded-lg mt-5">
+            <div className="flex mb-10 items-center justify-between">
+                <div><span className="text-xl font-bold">Recent Orders</span></div>
+                <div>
+                    <Button onClick={() => setOpenCreatePopup(true)} className="bg-slate-700 hover:bg-slate-800 !bg-opacity-40">
+                        <LucidePlus size={20} />
+                        <span className="ml-2">Create new</span>
+                    </Button>
+                </div>
+            </div>
+            <div className="w-full overflow-x-auto">
+                <table className="w-full">
+                    <thead>
+                        <tr>
+                            <th className="text-left p-3 pt-0">Stock/Index</th>
+                            <th className="text-left p-3 pt-0">Segment</th>
+                            <th className="text-left p-3 pt-0">Role</th>
+                            <th className="text-left p-3 pt-0">Expiry</th>
+                            <th className="text-left p-3 pt-0">Buy</th>
+                            <th className="text-left p-3 pt-0">Target</th>
+                            <th className="text-left p-3 pt-0">SL</th>
+                            <th className="text-left p-3 pt-0">Type of trade</th>
+                            <th className="text-left p-3 pt-0">Square off</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tableData.slice(0, 11).map((data, i) => <tr className={`${i % 2 === 0 ? "bg-secondary" : ""} rounded-lg`} key={i}>
+                            <td className="p-3 rounded-l-lg">{data.stockIndex}</td>
+                            <td className="p-3">{data.segment}</td>
+                            <td className="p-3">{data.role}</td>
+                            <td className="p-3">{data.expiry}</td>
+                            <td className="p-3">{data.buy}</td>
+                            <td className="p-3">{data.target}</td>
+                            <td className="p-3">{data.stopLoss}</td>
+                            <td className="p-3">{data.tradeType}</td>
+                            <td className="p-3 rounded-r-lg">{data.squareOff}</td>
+                        </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+            <div className="w-full border border-gray-600 opacity-50 px-4 mt-5"></div>
+            <div className="w-full flex items-center justify-between mt-5 px-2">
+                <div className="flex items-center text-gray-500">
+                    Page 3/10
+                </div>
+                <div className="flex items-center">
+                    <Button className="bg-transparent hover:bg-slate-800 !bg-opacity-40">
+                        <LucideArrowLeft size={20} />
+                    </Button>
+                    <Button className="bg-slate-800 hover:!bg-slate-800 active:!bg-slate-800">
+                        1
+                    </Button>
+                    {
+                        [2, 3, 4, 5].map((i) => <Button key={i} className="bg-transparent hover:bg-slate-800 !bg-opacity-40">
+                            {i}
+                        </Button>)
+                    }
+                    <Button className="bg-transparent hover:bg-slate-800 !bg-opacity-40">
+                        <LucideArrowRight size={20} />
+                    </Button>
+                </div>
+            </div>
+        </div>
 
-      <div className="flex space-x-2 text-black">
-        <select
-          name="segment"
-          value={TradeData.segment}
-          onChange={(e) => handleChange("segment", e.target.value)}
-          className="text-lg font-oswald border border-black rounded-lg p-2"
-        >
-          <option value="" disabled>
-            Segment
-          </option>
-          <option value="equity">Equity</option>
-          <option value="futures">Futures</option>
-          <option value="option">Option</option>
-          <option value="commodities">Commodities</option>
-          <option value="forex">Forex</option>
-        </select>
+        <Modal open={openCreatePopup} onClose={() => setOpenCreatePopup(false)}>
+            <div className="bg-primary w-[100%] md:w-[500px] p-5 rounded-lg">
+                <div className="flex items-center justify-between">
+                    <span className="text-xl font-bold">Create new order</span>
+                    <Button onClick={() => setOpenCreatePopup(false)} className="bg-transparent hover:bg-slate-800 !bg-opacity-40" >
+                        <span className="text-red-700">Close</span>
+                    </Button>
+                </div>
+                <div className="w-full flex flex-col mt-5">
+                    <Input variant="solid" label="Stock/Index" />
+                    <Input variant="solid" label="Segment" className="mt-2" />
+                    <Input variant="solid" label="Role" className="mt-2" />
+                    <Input variant="solid" label="Expiry" className="mt-2" type="date" />
+                    <Input variant="solid" label="Buy" className="mt-2" />
+                    <Input variant="solid" label="Target" className="mt-2" />
+                    <Input variant="solid" label="SL" className="mt-2" />
+                    <Input variant="solid" label="Type of trade" className="mt-2" />
+                    <Input variant="solid" label="Square off" className="mt-2" />
 
-        <select
-          name="trade_type"
-          value={TradeData.trade_type}
-          onChange={(e) => handleChange("trade_type", e.target.value)}
-          className="text-lg font-oswald border border-black rounded-lg p-2"
-        >
-          <option value="" disabled>
-            Trade Type
-          </option>
-          <option value="intraday">Intraday</option>
-          <option value="short_term">Short Term</option>
-          <option value="long_term">Long Term</option>
-          <option value="positional">Positional</option>
-          <option value="btst">BTST</option>
-        </select>
-      </div>
-
-      <div className="flex flex-col sm:flex-row mt-3 mb-4 space-x-2">
-        <input
-          type="number"
-          name="buy_price"
-          value={TradeData.buy_price}
-          onChange={(e) => handleChange("buy_price", e.target.value)}
-          className="text-lg border border-black rounded-lg p-2 w-full"
-          placeholder="Entry Price"
-        />
-        <input
-          type="number"
-          name="stop_loss"
-          value={TradeData.stop_loss}
-          onChange={(e) => handleChange("stop_loss", e.target.value)}
-          className="text-lg border border-black rounded-lg p-2 w-full"
-          placeholder="Stop Loss"
-        />
-        <input
-          type="number"
-          name="target_price"
-          value={TradeData.target_price}
-          onChange={(e) => handleChange("target_price", e.target.value)}
-          className="text-lg border border-black rounded-lg p-2 w-full"
-          placeholder="Target"
-        />
-      </div>
-
-      <ReactQuill
-        value={TradeData.analysis}
-        onChange={(value) => handleChange("analysis", value)}
-        placeholder="Enter your analysis here..."
-        className="w-full text-black rounded"
-      />
-
-      <div className="flex space-x-2 mt-4 justify-end">
-        <button
-          className="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600"
-          type="button"
-          onClick={onClose}
-        >
- 
-          Close
-        </button>
-
-        <button
-          type="button"
-          onClick={onSave}
-          className="bg-blue-500 hover:bg-blue-600 text-white text-xl p-2 flex gap-2 items-center rounded"
-        >
-          Save
-          <FontAwesomeIcon className="text-2xl" icon={faCheck} />
-        </button>
-      </div>
+                    <Button className="!bg-slate-700 hover:!bg-slate-800 active:!bg-slate-900 mt-5">
+                        Create
+                    </Button>
+                </div>
+            </div>
+        </Modal>
     </div>
-  );
-};
-
-export default function Home() {
-  const [showModal, setShowModal] = useState(false);
-  const [tempData, setTempData] = useState({
-    acronym: "",
-    segment: "",
-    trade_type: "",
-    analysis: "",
-    buy_price: "",
-    stop_loss: "",
-    target_price: "",
-  });
-  const [datas, setDatas] = useState([]);
-
-  const handleInputChange = (field, value) => {
-    setTempData({ ...tempData, [field]: value });
-  };
-
-  const handleAddData = () => {
-    setTempData({
-      acronym: "",
-      segment: "",
-      trade_type: "",
-      analysis: "",
-      buy_price: "",
-      stop_loss: "",
-      target_price: "",
-    });
-    setShowModal(true); // Show modal but don't save anything yet
-  };
-
-  const handleSave = () => {
-    if (
-      tempData.acronym.trim() &&
-      tempData.segment.trim() &&
-      tempData.trade_type.trim()
-    ) {
-      setDatas([tempData, ...datas]); // Add to the start of the array (latest first)
-      setShowModal(false); // Close the modal after saving
-    } else {
-      // Handle the case when the form is incomplete or invalid (optional)
-      alert("Please fill in all required fields.");
-    }
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false); // Close the modal without saving
-  };
-
-  return (
-    <main>
-      <button
-        className="px-4 mb-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 focus:outline-none"
-        onClick={handleAddData}
-      >
-        Add Inputs
-      </button>
-
-      {showModal && (
-        <div className="flex justify-center items-center max-w-md w-full mx-auto">
-          <TradeForm
-            TradeData={tempData}
-            onChange={handleInputChange}
-            onSave={handleSave}
-            onClose={handleCloseModal}
-          />
-        </div>
-      )}
-
-      {datas.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-xl font-bold mb-4">Saved Trades</h2>
-          <ul className="space-y-4">
-            {datas.map((data, index) => (
-              <li key={index} className="p-4 rounded-lg shadow-md">
-                <h3 className="text-lg font-bold">Trade Entry {index + 1}</h3>
-                <p><strong>Stock Name:</strong> {data.acronym || "N/A"}</p>
-                <p><strong>Segment:</strong> {data.segment || "N/A"}</p>
-                <p><strong>Trade Type:</strong> {data.trade_type || "N/A"}</p>
-                <p><strong>Entry Price:</strong> {data.buy_price || "N/A"}</p>
-                <p><strong>Stop Loss:</strong> {data.stop_loss || "N/A"}</p>
-                <p><strong>Target Price:</strong> {data.target_price || "N/A"}</p>
-                <p className="w-1/3"><strong>Analysis:</strong> {data.analysis || "N/A"}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </main>
-  );
 }
