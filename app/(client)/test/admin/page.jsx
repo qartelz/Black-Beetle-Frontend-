@@ -13,7 +13,7 @@ export default function Page() {
 
     return <div className="w-full px-5 py-5 flex flex-col">
         <span className="text-2xl font-bold text-white">Dashboard</span>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
             <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
                 <div className="flex flex-col items-center">
                     <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">

@@ -1,102 +1,39 @@
-"use client";
+import React, { useRef, useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
-import React, { useRef, useEffect, useState } from "react";
-import AnnotationPlugin from "chartjs-plugin-annotation";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
-import { sampleStockData } from "./data";  // Sample stock data
+export default function Graph() {
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  AnnotationPlugin
-);
+  const [data, setData] = useState({});
 
-export default function Graph(props) {
-  const ref = useRef(null);
+  return <div className='my-[180px]'>
+    <div className='flex justify-center mt-3 relative'>
 
-  // Preparing dataset with color-coded segments based on movement
-  const processedData = Object.keys(sampleStockData).map((key) => {
-    const closePrice = sampleStockData[key]["4. close"];
-    return {
-      time: new Date(key).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-      price: closePrice,
-    };
-  });
+      <div className='absolute -ml-[590px]'>
+        <div className='w-1 h-3 -ml-[1px] bg-white rounded-full absolute z-10' />
+        <div className='px-4 w-[230px] text-center py-1 bg-red-700 rounded-lg absolute -mt-[100px]'>
+          {'SL (-4.9%) 355.00'}
+        </div>
+        <div className='h-[90px] -mt-[90px] w-[1px] bg-red-700 animate-expand-y absolute' />
+      </div>
 
-  // Separating data into two segments: increasing and decreasing
-  const data = {
-    labels: processedData.map(d => d.time),
-    datasets: [
-      {
-        label: "Stock Movement",
-        data: processedData.map(d => d.price),
-        segment: {
-          borderColor: (ctx) => {
-            const index = ctx.p1DataIndex;
-            if (index === 0) return "#1DF81F"; // First segment as green by default
-            const prevPrice = processedData[index - 1].price;
-            const currentPrice = processedData[index].price;
-            return currentPrice >= prevPrice ? "#1DF81F" : "#F63C6B";  // Green for upward, red for downward
-          },
-          borderWidth: 2,
-        },
-        fill: false,
-        pointRadius: 10,
-        tension: 0.1,
-      },
-    ],
-  };
+      <div className='absolute'>
+        <div className='w-1 h-3 -ml-[1px] bg-white rounded-full absolute z-10' />
+        <div className='px-4 w-[230px] text-center py-1 bg-blue-700 rounded-lg absolute mt-[100px]'>
+          {'Buy (-3.05%) 359.0'}
+        </div>
+        <div className='h-[130px] w-[1px] bg-blue-700 animate-expand-y absolute' />
+      </div>
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        type: "category",
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        beginAtZero: false,
-        grid: {
-          display: false,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-      },
-      title: {
-        display: true,
-      },
-      tooltip: {
-        enabled: true,
-      },
-    },
-  };
+      <div className='absolute ml-[590px]'>
+        <div className='w-1 h-3 -ml-[1px] bg-white rounded-full absolute z-10' />
+        <div className='px-4 w-[230px] text-center py-1 bg-green-700 rounded-lg absolute mt-[35px] -ml-[229px]'>
+          {'SL (-4.9%) 355.00'}
+        </div>
+        <div className='h-[40px] w-[1px] bg-green-700 animate-expand-y absolute' />
+      </div>
 
-  return (
-    <div {...props} className={`${props.className} w-full h-[450px]`}>
-      <Line ref={ref} data={data} options={options} />
+      <div className='w-[600px] h-3 bg-gradient-to-r from-red-700 via-blue-700 to-green-700 rounded-lg absolute' />
     </div>
-  );
-}
+  </div>
+};
