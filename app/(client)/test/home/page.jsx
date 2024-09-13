@@ -1,7 +1,7 @@
 "use client";
 
 import Curve from "@/assets/svg/Curve";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import LaptopDraw from "@/assets/svg/LaptopDraw";
 import AnalyticsDraw from "@/assets/svg/AnalyticsDraw";
 import Section from "./Sections/Section";
