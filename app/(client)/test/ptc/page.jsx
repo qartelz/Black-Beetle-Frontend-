@@ -16,7 +16,7 @@ export default function PTC() {
         <Navbar />
         <div className="flex-1 flex bg-[#D8D8D8]">
             <div className="flex-1 px-10 md:px-20 lg:px-40 py-10 flex flex-col relative">
-                <span className="text-[#402D00C9] font-extrabold text-[30px]">Beetle’s Price Time Cycle Model</span>
+                <span className="text-[#402D00C9] font-extrabold text-[30px] my-5">Beetle’s Price Time Cycle Model</span>
                 <div className="w-full flex items-center gap-x-10">
                     <div className="flex-1 flex flex-col">
                         <span className="text-[15px] text-black font-semibold">{'I am a:'}</span>
