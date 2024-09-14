@@ -1,23 +1,28 @@
+"use client";
+
 import Button from "@/components/button/page"
 import Link from "next/link"
 import ScreenerLogo from "@/assets/images/screener-logo.png"
 import Image from "next/image"
 import Menu from "@/assets/svg/Menu"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 
 function NavbarLink() {
 
+    const pathName = usePathname()
+
     const links = [
-        { title: "Home", path: "/test/home/page" },
-        { title: "PTC Screener", path: "/test/watchlist/page" },
-        { title: "Trade Manager", path: "/test/alerts/page" },
+        { title: "Home", path: "/trade/home/" },
+        { title: "PTC Screener", path: "/trade/ptc" },
+        { title: "Trade Manager", path: "/trade/manager" },
         { title: "Trend Reversal Indicator", path: "/test/screener/page" },
     ]
 
     return <>
         {
             links.map((link, index) => {
-                return <Link className="px-3 py-2 rounded-xl" key={index} href={link.path}>{link.title}</Link>
+                return <Link className={`px-3 py-2 rounded-xl ${(pathName === link.path || pathName + "/" === link.path) && "font-bold"}`} key={index} href={link.path}>{link.title}</Link>
             })
         }
     </>

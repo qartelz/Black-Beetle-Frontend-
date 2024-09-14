@@ -7,7 +7,7 @@ export default function CreatePopup({ open, onClose }) {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return open ? <div className="w-full h-screen fixed inset-0 backdrop-blur-sm flex items-center justify-center" onClick={onClose}>
-        <div className="bg-white border border-[#D7B257] p-5 rounded-xl w-[583px] flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div className="z-50 bg-white border border-[#D7B257] p-5 rounded-xl w-[583px] flex flex-col" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-end">
                 <LucideX onClick={onClose} className="text-[#00000052] font-extrabold w-4 h-4 cursor-pointer hover:text-[#00000080]" />
             </div>
