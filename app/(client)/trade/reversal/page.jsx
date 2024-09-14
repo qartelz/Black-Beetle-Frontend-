@@ -32,7 +32,6 @@ export default function PTC() {
                 </div>
             </div>
 
-
             <div className="bg-white p-5 mt-5">
                 <div class="flex items-stretch">
                     <div class="w-[12px] flex-shrink-0 bg-[#D7B257]"></div>
@@ -48,20 +47,27 @@ export default function PTC() {
 
             <div className="mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10">
                 {
-                    Array(10).fill((_, i) => i).map((__, i) => {
+                    Array(9).fill((_, i) => i).map((__, i) => {
                         if (i % 4 === 0) {
                             return <Card key={i} onClick={() => setOpenCreatePopup(true)} className={"cursor-pointer"} />
                         } else if (i % 4 === 1) {
                             return <Card key={i} title={"STOCK"} />
                         } else if (i % 4 === 2) {
-                            return <Card type={"nrz"} key={i} />
+                            return <Card type={"uhz"} key={i} title={"Banknifty"} />
                         } else {
-                            return <Card type={"rz"} key={i} />
+                            return <Card type={"h"} key={i} title={"Nifty"} />
                         }
                     })
                 }
             </div>
-
+            <div className="flex justify-center gap-x-10 mt-5">
+                <button className="bg-[#D7B257] hover:bg-[#c89a27] active:bg-[#ffc124] text-black rounded-lg px-6 py-3 transition-all divide-red-100">
+                    <span className="ml-2">Watch</span>
+                </button>
+                <button className="bg-transparent hover:bg-[#c89a2732] border border-[#D7B257] active:bg-[#ffc1243b] text-black rounded-lg px-6 py-3 transition-all divide-red-100">
+                    <span className="ml-2">Reset</span>
+                </button>
+            </div>
             <CreatePopup open={openCreatePopup} onClose={() => setOpenCreatePopup(false)} />
         </div>
     </div>

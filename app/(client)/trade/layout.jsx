@@ -8,8 +8,11 @@ export default function Layout({ children }) {
             <Curve />
         </div>
 
-        <Navbar />
+        <Navbar fixed />
 
-        {children}
+        <div className="flex-1 pt-20 bg-[#D8D8D8]">
+            {children}
+        </div>
+
     </div>
 }
