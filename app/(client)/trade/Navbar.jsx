@@ -33,7 +33,7 @@ export default function Navbar({ fixed }) {
     const [openMenu, setOpenMenu] = useState(false)
 
     return (
-        <div className={`w-full px-5 py-2 bg-gradient-to-t from-[#312302] to-[#86703B] ${fixed ? "fixed z-10" : ""}`}>
+        <div className={`w-full px-5 py-2 bg-gradient-to-t from-[#312302] to-[#86703B] z-50 ${fixed ? "fixed z-10" : ""}`}>
             <div className="flex justify-between items-center">
                 <div className="h-[70px] relative w-[150px]">
                     <Image className="object-contain" src={ScreenerLogo} alt="Logo" layout="fill" />
