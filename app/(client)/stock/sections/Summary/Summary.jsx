@@ -7,27 +7,10 @@ export default function SummarySection() {
     const [openCompare, setOpenCompare] = useState(false);
 
     return <div className="text-xl flex flex-col">
-        <span className="text-[#D7B257C9] font-extrabold">What's the Game Plan?</span>
-        <p>
-            Beetle Screener has identified a great opportunity with Microsoft!
-            Here’s what we’re looking at:
-        </p>
-        <div className="pl-10">
-            <ul className="list-disc list-marker-yellow">
-                <li>
-                    <span className="text-[#D7B257C9]">Buy:</span> This is the suggested entry price to get in on the action.
-                </li>
-                <li>
-                    <span className="text-[#D7B257C9]">Target Price:</span> If the trade goes as planned, this is where we aim to cash out.
-                </li>
-                <li>
-                    <span className="text-[#D7B257C9]">Stop-Loss:</span> Just in case the market takes a turn, this is the safety net to minimize any losses.
-                </li>
-            </ul>
-        </div>
+        
         <div className="w-full mt-5 flex justify-between">
             <div>
-                <span className="text-[#D7B257C9] font-extrabold">Metrics</span>
+                <span className="text-[#D7B257C9] font-extrabold">Trade</span>
             </div>
             <Select onSelect={(i) => setOpenCompare(i === "Compare")} options={['Current', 'Compare']} className={'text-sm w-32'} />
         </div>
@@ -53,7 +36,7 @@ export default function SummarySection() {
             <div className="flex flex-1 flex-col justify-center bg-[#393939] p-5 rounded">
                 <div className="flex items-center">
                     <div className="h-6 w-2 rounded-full bg-gradient-to-r from-[#D7B257C9] to-[#715E2E47]"></div>
-                    <div className="text-sm ml-2">Buy:&nbsp;&nbsp;359.00</div>
+                    <div className="text-sm ml-2">Stop Loss:&nbsp;&nbsp;359.00</div>
                 </div>
                 <div className="text-danger text-sm mt-2">-4.90 -1.36%</div>
             </div>
@@ -81,7 +64,7 @@ export default function SummarySection() {
             <div className="flex flex-1 flex-col justify-center bg-[#2B2A2A] p-5 rounded">
                 <div className="flex items-center">
                     <div className="h-6 w-2 rounded-full bg-gradient-to-r from-[#D7B257C9] to-[#715E2E47]"></div>
-                    <div className="text-sm ml-2">Buy:&nbsp;&nbsp;359.00</div>
+                    <div className="text-sm ml-2">Stop Loss:&nbsp;&nbsp;359.00</div>
                 </div>
                 <div className="text-danger text-sm mt-2">-4.90 -1.36%</div>
             </div>

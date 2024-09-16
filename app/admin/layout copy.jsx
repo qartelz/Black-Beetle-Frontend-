@@ -1,5 +1,9 @@
+
+
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Sidebar from "./Sidebar";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,7 +20,15 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
       </head>
       <body className={inter.className}>
-        {children}
+      <div className="w-full h-screen flex flex-col lg:flex-row bg-secondary">
+        <div className="h-16 w-full lg:w-52 lg:h-screen overflow-y-auto">
+            <Sidebar />
+        </div>
+        <div className="flex-1 h-screen overflow-y-auto">
+            {children}
+        </div>
+
+    </div>
       </body>
     </html>
   );
