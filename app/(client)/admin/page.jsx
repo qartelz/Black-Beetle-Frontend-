@@ -20,10 +20,7 @@ import Modal from "@/components/modal";
 import Input from "@/components/input";
 import { useEffect, useState } from "react";
 
-
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-
 
 const TradeForm = ({ TradeData, onChange, onSave, onClose, isEditing }) => {
   const handleChange = (field, value) => {
@@ -173,8 +170,6 @@ const TradeForm = ({ TradeData, onChange, onSave, onClose, isEditing }) => {
 };
 
 export default function Page() {
-
-
   const [tempData, setTempData] = useState({
     acronym: "",
     segment: "",
@@ -205,13 +200,11 @@ export default function Page() {
     fetchData();
   }, []);
 
-
-
   const handleInputChange = (field, value) => {
     setTempData({ ...tempData, [field]: value });
   };
 
-  const handleSave =  async () => {
+  const handleSave = async () => {
     // Ensure that required fields are not empty
     if (
       tempData.acronym.trim() &&
@@ -223,22 +216,19 @@ export default function Page() {
       tempData.target_price &&
       tempData.expire
     ) {
-      
       let updatedDatas;
-      
 
       if (isEditing) {
         // Update the data at the specific index
         const updatedDatas = [...datas];
         updatedDatas[editIndex] = tempData;
-      
       } else {
         // Append new data
         updatedDatas = [tempData, ...datas];
       }
       try {
         const response = await axios.post("/api/tradeData", updatedDatas); // replace with your API endpoint
-        setDatas(response.data); // Update state with response
+        set(response.data); // Update state with response
       } catch (error) {
         console.error("Error saving data:", error);
       }
@@ -263,7 +253,7 @@ export default function Page() {
       setTempData({
         acronym: "",
         segment: "",
-        trade_type: "", 
+        trade_type: "",
         trade_status: "",
         analysis_bull: "",
         analysis_bear: "",
