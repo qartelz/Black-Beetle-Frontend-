@@ -53,7 +53,7 @@ ul.list-marker-yellow ::marker {
   background-color: #86703B;
 }
 
-.rubik-font {
+* {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
 }

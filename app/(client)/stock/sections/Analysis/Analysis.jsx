@@ -3,25 +3,45 @@ import Graph from "./Graph";
 import { useState } from "react";
 import { sampleStockData } from "../Summary/data";
 
-const datasets = [{
-    label: "Bullish",
-    data: Object.keys(sampleStockData).slice(0, 30).map((key) => sampleStockData[key]["2. high"]),
-    fill: false,
-    borderColor: "#34C759",
-    pointRadius: 1,
-    borderWidth: 2,
-},
-{
-    label: "Bearish",
-    data: Object.keys(sampleStockData).slice(0, 30).map((key) => sampleStockData[key]["3. low"]),
-    fill: false,
-    borderColor: "#F63C6B",
-    pointRadius: 1,
-    borderWidth: 2,
-}]
+
 
 export default function AnalysisSection() {
 
+    const [sampleStockData, setSampleStockData] = useState({});
+
+    useEffect(() => {
+        for (let i = 5; i <= 70; i++) {
+            const date = `2023-09-${i < 10 ? '0' + i : i}`;
+            const open = Math.floor(Math.random() * 70) + 20;
+            const high = open + Math.floor(Math.random() * 5);
+            const low = open - Math.floor(Math.random() * 5);
+            const close = Math.floor(Math.random() * (high - low)) + low;
+            sampleStockData[date] = {
+                "1. open": open,
+                "2. high": high,
+                "3. low": low,
+                "4. close": close
+            };
+        }
+        setSampleStockData(sampleStockData);
+    })
+
+    const datasets = [{
+        label: "Bullish",
+        data: Object.keys(sampleStockData).slice(0, 30).map((key) => sampleStockData[key]["2. high"]),
+        fill: false,
+        borderColor: "#34C759",
+        pointRadius: 1,
+        borderWidth: 2,
+    },
+    {
+        label: "Bearish",
+        data: Object.keys(sampleStockData).slice(0, 30).map((key) => sampleStockData[key]["3. low"]),
+        fill: false,
+        borderColor: "#F63C6B",
+        pointRadius: 1,
+        borderWidth: 2,
+    }]
     const [dataset, setDataset] = useState(datasets[0]);
 
     return <div className="text-xl flex flex-col">
