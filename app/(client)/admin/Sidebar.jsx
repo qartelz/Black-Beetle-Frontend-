@@ -1,13 +1,15 @@
 "use client"
 
 import Button from "@/components/button/page"
-import { LucideBaggageClaim, LucideDiamond, LucideHome, LucideMenu, LucideShoppingBag } from "lucide-react"
+import { LucideBaggageClaim, LucideDiamond, LucideHome, LucideMenu, LucideShoppingBag,User } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 
 const navs = [
     { name: 'Dashboard', icon: <LucideHome />, path: '/admin' },
+    { name: "Users", icon: <User />, path: "/admin/users" },
     { name: "Premium", icon: <LucideDiamond />, path: "/admin/premium" },
+
     { name: "Orders", icon: <LucideBaggageClaim />, path: "/admin/orders" }
 ]
 

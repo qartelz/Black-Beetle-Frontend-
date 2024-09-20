@@ -276,7 +276,7 @@ export default function Page() {
               <LucidePersonStanding size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">100</span>
-            <span>Users</span>
+            <span>Daily Calls</span>
           </div>
         </div>
         <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
@@ -285,7 +285,7 @@ export default function Page() {
               <LucidePackage size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">234</span>
-            <span>Orders</span>
+            <span>Monthly Calls</span>
           </div>
         </div>
         <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
@@ -294,11 +294,11 @@ export default function Page() {
               <LucideDiamond size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">100</span>
-            <span>Premium users</span>
+            <span>Expired Calls</span>
           </div>
         </div>
       </div>
-      
+
 
       <Button
         onClick={() => {
