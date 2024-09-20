@@ -20,10 +20,7 @@ import Modal from "@/components/modal";
 import Input from "@/components/input";
 import { useEffect, useState } from "react";
 
-
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-
 
 const TradeForm = ({ TradeData, onChange, onSave, onClose, isEditing }) => {
   const handleChange = (field, value) => {
@@ -173,8 +170,6 @@ const TradeForm = ({ TradeData, onChange, onSave, onClose, isEditing }) => {
 };
 
 export default function Page() {
-
-
   const [tempData, setTempData] = useState({
     stock_index: "",
     segment: "",
@@ -206,13 +201,11 @@ export default function Page() {
     fetchData();
   }, []);
 
-
-
   const handleInputChange = (field, value) => {
     setTempData({ ...tempData, [field]: value });
   };
 
-  const handleSave =  async () => {
+  const handleSave = async () => {
     // Ensure that required fields are not empty
     if (
       tempData.stock_index.trim() &&
@@ -224,15 +217,12 @@ export default function Page() {
       tempData.target &&
       tempData.expiry_date
     ) {
-      
       let updatedDatas;
-      
 
       if (isEditing) {
         // Update the data at the specific index
         const updatedDatas = [...datas];
         updatedDatas[editIndex] = tempData;
-      
       } else {
         // Append new data
         updatedDatas = [tempData, ...datas];
@@ -262,16 +252,16 @@ export default function Page() {
   useEffect(() => {
     if (openCreatePopup && !isEditing) {
       setTempData({
-        stock_index: "",
-        segment: "",     
+        acronym: "",
+        segment: "",
         trade_type: "", 
-        status: "",
-        bull_scenario: "",
-        bear_scenario: "",
-        buy: "",
-        sl: "",
-        target: "",
-        expiry_date: "",
+        trade_status: "",
+        analysis_bull: "",
+        analysis_bear: "",
+        buy_price: "",
+        stop_loss: "",
+        target_price: "",
+        expire: "",
       });
     }
   }, [openCreatePopup, isEditing]);
@@ -286,7 +276,7 @@ export default function Page() {
               <LucidePersonStanding size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">100</span>
-            <span>Users</span>
+            <span>Daily Calls</span>
           </div>
         </div>
         <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
@@ -295,7 +285,7 @@ export default function Page() {
               <LucidePackage size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">234</span>
-            <span>Orders</span>
+            <span>Monthly Calls</span>
           </div>
         </div>
         <div className="bg-primary text-white p-5 rounded-lg flex items-center justify-center">
@@ -304,10 +294,11 @@ export default function Page() {
               <LucideDiamond size={40} />
             </div>
             <span className="text-3xl font-bold mt-2">100</span>
-            <span>Premium users</span>
+            <span>Expired Calls</span>
           </div>
         </div>
       </div>
+
 
       <Button
         onClick={() => {
