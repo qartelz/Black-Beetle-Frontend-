@@ -20,21 +20,24 @@ export default function LoginPage() {
     const [openCodeModal, setOpenCodeModal] = useState(false);
     const [openCheckInModal, setOpenCheckInModal] = useState(false);
     const [otpError, setOtpError] = useState("");
-    const [hashedOtp, setHashedOtp] = useState(""); // Store hashed OTP
+    const [hash, setHash] = useState("");
+    console.log(hash) // Store hashed OTP
     const [otpExpiry, setOtpExpiry] = useState("");
     const [timeLeft, setTimeLeft] = useState(300);
+    console.log(otpExpiry)
 
     const handleContinueClick = async () => {
         try {
            
-            const response = await axios.post("/api/send-otp", {
-                mobile: mobileNumber, 
+            const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+                mobile_number: mobileNumber, 
             });
+            console.log(response.data,"testing the login otp ")
 
             if (response.status === 200) {
               
-                const { hashedOtp, expiry } = response.data;
-                setHashedOtp(hashedOtp);  
+                const { hash, expiry } = response.data;
+                setHash(hash);  
                 setOtpExpiry(expiry);    
                 setOpenCodeModal(true);
             }
@@ -46,12 +49,13 @@ export default function LoginPage() {
 
     const handleVerifyOtp = async () => {
         try {
-            const response = await axios.post("/api/verify-otp", {
+            const response = await axios.post("http://127.0.0.1:8000/api/verify-otp/", {
+                mobileNumber,
                 otp,          
-                hashedOtp,    
+                hash,    
                 expiry: otpExpiry,  // Send the expiry time
             });
-
+            console.log(response.data)
             if (response.status === 200) {
                 // If OTP verification is successful
                 setOpenCodeModal(false);  // Close OTP modal
@@ -102,7 +106,7 @@ export default function LoginPage() {
                         <CountryInput value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                     </div>
 
-                    <button onClick={() => setOpenCodeModal(true)} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
+                    <button onClick={handleContinueClick} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                         Continue
                     </button>
                     <span className="mt-[25px] text-[12px] w-full text-center">By logging in, you agree to follow our <Link href={""} className="text-[#00BDDD]"><u>terms of service</u></Link></span>
@@ -138,7 +142,7 @@ export default function LoginPage() {
                     {otpError && <span className="text-red-500 text-sm mt-2">{otpError}</span>}
                     <span className="text-[#999999] text-[22px] mt-5 lg:mt-10">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
                     <center>
-                        <button onClick={() => { setOpenCheckInModal(true); setOpenCodeModal(false) }} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
+                        <button onClick={() => { handleVerifyOtp ()}} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                             Verify OTP
                         </button>
                     </center>
