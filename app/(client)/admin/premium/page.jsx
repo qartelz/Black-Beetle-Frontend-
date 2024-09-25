@@ -7,8 +7,6 @@ import Modal from "@/components/modal";
 import axios from "axios";
 
 
-
-
 const PremiumForm = ({ PremiumData, onChange, onSave, onClose }) => {
     const handleChange = (field, value) => {
       onChange(field, value);
@@ -86,10 +84,14 @@ export default function Page() {
       useEffect(() => {
         const fetchData = async () => {
           try {
+
             const response = await axios.get("http://127.0.0.1:8000/admin-side/premium/"); // replace with your backend API
             // console.log(response.data)
             setDatas(response.data.data);
              // Store fetched data into the state
+
+           
+
           } catch (error) {
             console.error("Error fetching data:", error);
           }
