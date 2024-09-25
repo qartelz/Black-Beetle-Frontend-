@@ -1,5 +1,5 @@
 "use client";
-
+import axios from "axios";
 import Curve from "@/assets/svg/Curve";
 import LogoGold from "@/assets/svg/LogoGold";
 import CountryInput from "@/components/CountryInput";
@@ -7,7 +7,7 @@ import Input from "@/components/inputB";
 import Image from "next/image";
 import Link from "next/link";
 import SandGlass from "@/assets/images/sand-glass.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@/components/modal";
 import GradientBorderDiv from "@/components/div";
 import OtpBox from "../OtpBox";
@@ -15,9 +15,70 @@ import CheckIn from "@/assets/svg/CheckIn";
 
 export default function LoginPage() {
 
+    const [mobileNumber, setMobileNumber] = useState("");
+    const [otp, setOtp] = useState("");
     const [openCodeModal, setOpenCodeModal] = useState(false);
     const [openCheckInModal, setOpenCheckInModal] = useState(false);
+    const [otpError, setOtpError] = useState("");
+    const [hashedOtp, setHashedOtp] = useState(""); // Store hashed OTP
+    const [otpExpiry, setOtpExpiry] = useState("");
+    const [timeLeft, setTimeLeft] = useState(300);
 
+    const handleContinueClick = async () => {
+        try {
+           
+            const response = await axios.post("/api/send-otp", {
+                mobile: mobileNumber, 
+            });
+
+            if (response.status === 200) {
+              
+                const { hashedOtp, expiry } = response.data;
+                setHashedOtp(hashedOtp);  
+                setOtpExpiry(expiry);    
+                setOpenCodeModal(true);
+            }
+        } catch (error) {
+            console.error("Error sending OTP:", error);
+          
+        }
+    };
+
+    const handleVerifyOtp = async () => {
+        try {
+            const response = await axios.post("/api/verify-otp", {
+                otp,          
+                hashedOtp,    
+                expiry: otpExpiry,  // Send the expiry time
+            });
+
+            if (response.status === 200) {
+                // If OTP verification is successful
+                setOpenCodeModal(false);  // Close OTP modal
+                setOpenCheckInModal(true); // Open success modal
+            }
+        } catch (error) {
+            console.error("Error verifying OTP:", error);
+            setOtpError("Invalid OTP or OTP has expired. Please try again."); // Set error message
+        }
+    };
+
+    useEffect(() => {
+        if (openCodeModal && timeLeft > 0) {
+            const timer = setInterval(() => {
+                setTimeLeft((prevTime) => prevTime - 1);
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }
+    }, [openCodeModal, timeLeft]);
+
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
+    
+    };
     return <div className="w-full flex h-screen bg-gradient-to-b from-[#8E6D1C60] to-[#000000] rubik-font">
         {/* BACKGROUND IMAGE */}
         <div className="fixed w-full h-screen overflow-hidden pointer-events-none">
@@ -38,7 +99,7 @@ export default function LoginPage() {
                     <div className="mt-[28px] text-[14px] font-semibold text-[#999999]">
                         Phone
                         <div className="w-[6px]" />
-                        <CountryInput />
+                        <CountryInput value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                     </div>
 
                     <button onClick={() => setOpenCodeModal(true)} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
@@ -66,12 +127,19 @@ export default function LoginPage() {
                         Enter the verification code sent to your phone
                     </span>
                     <div className="w-full flex justify-center mt-5 lg:mt-10">
-                        <OtpBox />
+                    <OtpBox value={otp} onChange={(e) => setOtp(e.target.value)} />
                     </div>
+
+                    <div className="text-[#999999] text-lg lg:text-[22px] mt-5">
+                            Time remaining: <span className="font-bold">{formatTime(timeLeft)}</span>
+                        </div>
+
+
+                    {otpError && <span className="text-red-500 text-sm mt-2">{otpError}</span>}
                     <span className="text-[#999999] text-[22px] mt-5 lg:mt-10">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
                     <center>
                         <button onClick={() => { setOpenCheckInModal(true); setOpenCodeModal(false) }} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
-                            Sign In
+                            Verify OTP
                         </button>
                     </center>
                 </div>
@@ -79,7 +147,7 @@ export default function LoginPage() {
         </Modal>
 
         {/* CHECK IN MODAL */}
-        <Modal open={openCheckInModal} onClose={() => setOpenCheckInModal(false)} >
+        <Modal open={openCheckInModal}  onClick={handleContinueClick} >
             <GradientBorderDiv gradientColors={['#8E6D1C', '#000000']} className={'w-[90%] lg:w-full flex'}>
                 <div className="bg-gradient-to-b flex bg-black flex-col from-[#8E6D1C60] to-[#000000] px-[43px] rounded-xl lg:w-[900px]">
                     <div className="flex flex-col items-center">
