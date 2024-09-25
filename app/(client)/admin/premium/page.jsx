@@ -4,6 +4,7 @@ import { tableData } from "../data";
 import Button from "@/components/button/page";
 import { useEffect, useState } from "react";
 import Modal from "@/components/modal";
+import axios from "axios";
 
 
 const PremiumForm = ({ PremiumData, onChange, onSave, onClose }) => {
@@ -82,9 +83,9 @@ export default function Page() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get("http://127.0.0.1:8000/admin-side/trades/"); // replace with your backend API
+            const response = await axios.get("http://127.0.0.1:8000/admin-side/trades/"); 
             console.log(response.data)
-            setDatas(response.data); // Store fetched data into the state
+            setDatas(response.data); 
           } catch (error) {
             console.error("Error fetching data:", error);
           }
@@ -190,7 +191,7 @@ export default function Page() {
       </div>
 
 
-      {datas.length > 0 && (
+      {/* {datas.length > 0 && ( */}
 
 
 
@@ -240,7 +241,7 @@ export default function Page() {
                 </div>
             </div>
         </div>
-  )} 
+  {/* )}  */}
         <Modal open={openCreatePopup} onClose={() => setOpenCreatePopup(false)}>
         <div className="flex justify-center items-center max-w-md w-full mx-auto">
           <PremiumForm
