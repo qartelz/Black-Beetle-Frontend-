@@ -13,9 +13,9 @@ const PremiumForm = ({ PremiumData, onChange, onSave, onClose }) => {
     };
   
     return (
-      <div className="bg-white w-full border  overflow-hidden rounded-t-xl p-8 text-black shadow-lg">
+      <div className="bg-white  w-full border  overflow-hidden rounded-t-xl p-8 shadow-lg">
 
-        <div className="text-black uppercase text-xl mb-2">
+        <div className=" text-black uppercase text-xl mb-2">
 
           <input
             type="text"
@@ -34,7 +34,7 @@ const PremiumForm = ({ PremiumData, onChange, onSave, onClose }) => {
             value={PremiumData.premium_period}
            
             onChange={(e) => handleChange("premium_period", e.target.value)}
-            className="text-lg font-oswald border border-black rounded-lg p-2"
+            className="text-lg  font-oswald border border-black rounded-lg p-2"
           >
             <option value="" disabled>
               Premium Period
@@ -78,14 +78,20 @@ export default function Page() {
        
       });
       const [datas, setDatas] = useState([]);
+      console.log(datas,"htjkylhtykhtykhmtykh")
       const [openCreatePopup, setOpenCreatePopup] = useState(false);
 
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get("http://127.0.0.1:8000/admin-side/trades/"); 
-            console.log(response.data)
-            setDatas(response.data); 
+
+            const response = await axios.get("http://127.0.0.1:8000/admin-side/premium/"); // replace with your backend API
+            // console.log(response.data)
+            setDatas(response.data.data);
+             // Store fetched data into the state
+
+           
+
           } catch (error) {
             console.error("Error fetching data:", error);
           }
@@ -115,8 +121,9 @@ export default function Page() {
             updatedDatas = [tempData, ...datas];
           
           try {
-            const response = await axios.post("http://127.0.0.1:8000/admin-side/create-trade/", updatedDatas); // replace with your API endpoint
-            setDatas(response.data); // Update state with response
+            const response = await axios.post("http://127.0.0.1:8000/admin-side/premium/", updatedDatas); // replace with your API endpoint
+            console.log(response.data)
+            setDatas(response.data.data); // Update state with response
           } catch (error) {
             console.error("Error saving data:", error);
           }
@@ -194,24 +201,25 @@ export default function Page() {
       {/* {datas.length > 0 && ( */}
 
 
+    
 
 
 
-        <div className="w-full flex flex-col bg-primary p-5 rounded-lg mt-5">
+        <div className="w-full  text-white flex flex-col bg-primary p-5 rounded-lg mt-5">
             <div className="w-full overflow-x-auto">
                 <table className="w-full">
                     <thead>
                         <tr>
-                            <th className="text-left p-3 pt-0">Premium Amount</th>
+                            <th className="text-left p-3 pt-0 ">Premium Amount</th>
                             <th className="text-left p-3 pt-0">Premium Period</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                        {datas.slice(0, 11).map((data, i) => <tr className={`${i % 2 === 0 ? "bg-secondary" : ""} rounded-lg`} key={i}>
+                        {datas.map((data, i) => <tr className={`${i % 2 === 0 ?  "bg-secondary" : ""} rounded-lg`} key={i}>
                             
-                            <td className="p-3">{data. premium_period}</td>
-                            <td className="p-3">{data.premium_amount}</td>
+                            <td className="p-3 capitalize">{data. premium_period}</td>
+                            <td className="p-3 capitalize">{data.premium_amount}</td>
                             
                         </tr>
                         )}

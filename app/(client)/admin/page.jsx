@@ -266,6 +266,25 @@ export default function Page() {
     }
   }, [openCreatePopup, isEditing]);
 
+  const [count, setCount] = useState({ daily_trade_count: 0, monthly_trade_count: 0, expired_trades: 0 })
+  console.log(count,"shejfberhjbfherbfehrbferbferufu")
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/admin-side/trade-counts/"
+        ); // replace with your backend API
+        console.log(response.data);
+        setCount(response.data); 
+        // Store fetched data into the state
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full px-5 py-5 flex flex-col">
       <span className="text-2xl font-bold text-white">Dashboard</span>
@@ -275,7 +294,7 @@ export default function Page() {
             <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
               <LucidePersonStanding size={40} />
             </div>
-            <span className="text-3xl font-bold mt-2">100</span>
+            <span className="text-3xl font-bold mt-2">{count.daily_trade_count}</span>
             <span>Daily Calls</span>
           </div>
         </div>
@@ -284,7 +303,7 @@ export default function Page() {
             <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
               <LucidePackage size={40} />
             </div>
-            <span className="text-3xl font-bold mt-2">234</span>
+            <span className="text-3xl font-bold mt-2">{count.monthly_trade_count}</span>
             <span>Monthly Calls</span>
           </div>
         </div>
@@ -293,7 +312,7 @@ export default function Page() {
             <div className="w-24 h-24 rounded-full border border-[#D7B257] text-[#D7B257] flex items-center justify-center">
               <LucideDiamond size={40} />
             </div>
-            <span className="text-3xl font-bold mt-2">100</span>
+            <span className="text-3xl font-bold mt-2">{count.expired_trades}</span>
             <span>Expired Calls</span>
           </div>
         </div>
