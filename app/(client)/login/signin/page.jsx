@@ -102,7 +102,7 @@ export default function LoginPage() {
                         <CountryInput value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                     </div>
 
-                    <button onClick={() => setOpenCodeModal(true)} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
+                    <button onClick={handleContinueClick} className="mt-[36px] text-[20px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                         Continue
                     </button>
                     <span className="mt-[25px] text-[12px] w-full text-center">By logging in, you agree to follow our <Link href={""} className="text-[#00BDDD]"><u>terms of service</u></Link></span>
