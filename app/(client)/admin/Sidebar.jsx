@@ -6,8 +6,9 @@ import {
   LucideDiamond,
   LucideHome,
   LucideMenu,
-  LucideShoppingBag,
+  School ,
   User,
+  GraduationCap 
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -17,6 +18,9 @@ const navs = [
   { name: "Users", icon: <User />, path: "/admin/users" },
   { name: "Premium", icon: <LucideDiamond />, path: "/admin/premium" },
   { name: "Orders", icon: <LucideBaggageClaim />, path: "/admin/orders" },
+  { name: "Institute", icon: <School />, path: "/admin/institute" },
+  { name: "Students", icon: <GraduationCap  />, path: "/admin/students" },
+
 ];
 
 export default function Sidebar() {

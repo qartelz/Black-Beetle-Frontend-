@@ -12,8 +12,13 @@ import Modal from "@/components/modal";
 import GradientBorderDiv from "@/components/div";
 import OtpBox from "../OtpBox";
 import CheckIn from "@/assets/svg/CheckIn";
+import { useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
+
+    const searchParams = useSearchParams();
+    const otpp = searchParams.get('otp'); // Get OTP from query parameters
+    console.log(otpp,"This is the otp")
 
     const [mobileNumber, setMobileNumber] = useState("");
     const [otp, setOtp] = useState("");
@@ -24,8 +29,7 @@ export default function LoginPage() {
     console.log(hash) // Store hashed OTP
     const [otpExpiry, setOtpExpiry] = useState("");
     const [timeLeft, setTimeLeft] = useState(300);
-    console.log(otpExpiry)
-
+   
     const handleContinueClick = async () => {
         try {
            
@@ -51,7 +55,7 @@ export default function LoginPage() {
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/verify-otp/", {
                 mobileNumber,
-                otp,          
+                otp,
                 hash,    
                 expiry: otpExpiry,  // Send the expiry time
             });
@@ -130,22 +134,25 @@ export default function LoginPage() {
                     <span className="text-[#999999] text-lg lg:text-[22px] mt-2 lg:mt-[15px]">
                         Enter the verification code sent to your phone
                     </span>
-                    <div className="w-full flex justify-center mt-5 lg:mt-10">
+                    <div className="w-full text-white flex justify-center mt-5 lg:mt-10">
                     <OtpBox value={otp} onChange={(e) => setOtp(e.target.value)} />
                     </div>
 
-                    <div className="text-[#999999] text-lg lg:text-[22px] mt-5">
-                            Time remaining: <span className="font-bold">{formatTime(timeLeft)}</span>
-                        </div>
 
-
-                    {otpError && <span className="text-red-500 text-sm mt-2">{otpError}</span>}
-                    <span className="text-[#999999] text-[22px] mt-5 lg:mt-10">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
                     <center>
                         <button onClick={() => { handleVerifyOtp ()}} className="w-full lg:w-[495px] text-[20px] my-[49px] font-semibold text-black rounded-lg bg-[#D7B257] hover:bg-[#D7B280] active:bg-[#D7B210] transition-all duration-200 py-[21px]">
                             Verify OTP
                         </button>
                     </center>
+
+                    <div className="text-[#999999] text-lg lg:text-[22px] ">
+                            Time remaining: <span className="font-bold">{formatTime(timeLeft)}</span>
+                        </div>
+
+
+                    {otpError && <span className="text-red-500 text-sm ">{otpError}</span>}
+                    <span className="text-[#999999] text-[22px] mt-5 mb-5">Haven’t received the code? <span className="text-[#D7B257]"><u>Send again</u></span></span>
+                   
                 </div>
             </GradientBorderDiv>
         </Modal>

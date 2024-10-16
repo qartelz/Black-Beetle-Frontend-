@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link"; // For client-side navigation
 // import heroImage from '../public/hero-image.jpg';
@@ -16,6 +18,7 @@ import InterBeteels from "@/assets/svg/InterBeteels";
 import ChartBottom from "@/assets/svg/ChartBottom";
 import ScreenAiMap from "@/assets/svg/ScreenAiMap";
 import PriceTimeImg from "@/assets/svg/PriceTimeImg";
+import { useRef } from "react";
 
 const LinesSVG = () => (
   <div className=" flex items-center justify-center">
@@ -113,11 +116,19 @@ const dataUrl = `url("data:image/svg+xml;base64,${Buffer.from(
 ).toString("base64")}")`;
 
 const HomePage = () => {
+  const targetRef = useRef(null);
+
+  const scrollToTargetSection = () => {
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const svgLines = "data:image/svg+xml;base64," + btoa((<Lines />).toString());
 
   return (
-    <main className="w-full h-[1104px]" style={{ backgroundImage: dataUrl }}>
-      <Navbar />
+     <main className="w-full h-[1104px]" style={{ backgroundImage: dataUrl }}>
+     <Navbar scrollToSection={scrollToTargetSection} className="relative z-50" />
 
       <section className="flex flex-col md:flex-row items-start justify-between px-[112px] py-[236px] text-white">
         {/* Left Side */}
@@ -147,12 +158,14 @@ const HomePage = () => {
             our AI-powered screening tool.
           </p>
 
-          <Link
-            href="/test/dashboard"
-            className="inline-block bg-[#D7B257] text-black py-2 px-6 rounded-[5px] shadow-lg hover:bg-blue-600 transition-colors"
-          >
-            Get Started
-          </Link>
+          <button
+  className="inline-block bg-[#D7B257] text-black py-2 px-6 rounded-[5px] shadow-lg hover:bg-blue-600 transition-colors"
+  onClick={() => document.getElementById('target-section').scrollIntoView({ behavior: 'smooth' })}
+>
+  Get Started
+</button>
+
+
         </div>
 
         {/* Right Side */}
@@ -170,7 +183,7 @@ const HomePage = () => {
 
           <div className=" w-full  px-10 ">
             <div className="absolute left-0 right-0 -top-16">
-              <LinesSVG />
+              {/* <LinesSVG /> */}
             </div>
 
             <div className="relative  flex justify-between mb-6">
@@ -239,11 +252,11 @@ const HomePage = () => {
                 </div>
               </div>
 
-              <div className="relative">
+              <section  className="relative">
                 <BoxBottom className="w-full h-full" />
                 <div className="absolute inset-0 flex items-center justify-between overflow-hidden px-4">
                   <div className="flex flex-col text-left w-1/2">
-                    <h2 className="text-[#D7B257] font-bold text-2xl mb-4">
+                    <h2  className="text-[#D7B257] font-bold text-2xl mb-4">
                       Beetle’s AI-Based Model
                     </h2>
 
@@ -258,12 +271,12 @@ const HomePage = () => {
                   </div>
                   <ChartBottom className="ml-4" />
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </div>
 
-        <h2 className="text-3xl  mt-28 font-bold text-[#D7B257] ">
+        <h2  ref={targetRef} id="target-section"  className="text-3xl  mt-28 font-bold text-[#D7B257] ">
           Beetle’s AI-Based Model
         </h2>
         <h2 className="text-2xl font-light mb-4">
@@ -277,9 +290,12 @@ const HomePage = () => {
               <ScreenAiMap className="w-[363px] z-40" />
 
               <div className="flex w-full transform translate-x-28">
-                <button className="border flex rounded-lg text-white font-bold py-2 px-4 w-auto">
-                  Start Trading
-                </button>
+              <Link href="/trades">
+  <button className="border flex rounded-lg text-white font-bold py-2 px-4 w-auto hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out">
+    Start Trading
+  </button>
+</Link>
+
               </div>
             </div>
           </div>

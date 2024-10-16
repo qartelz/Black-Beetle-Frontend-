@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 export default function OtpBox() {
     const inputs = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const [otp, setOtp] = useState(["", "", "", ""]);
+    
 
     const handleChange = (e, index) => {
         const { value } = e.target;
