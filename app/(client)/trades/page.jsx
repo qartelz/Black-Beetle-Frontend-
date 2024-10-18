@@ -74,7 +74,7 @@ export default function Page() {
             <Navbar />
 
             {/* MAIN CONTENT */}
-            <div className="px-10 lg:px-40 xl:px-60 mt-32 flex flex-col">
+            <div className="px-10 h-screen lg:px-40 xl:px-60 mt-32 flex flex-col">
                 <span className="text-2xl text-black mt-10">
                     Welcome Back, <span className="font-extrabold text-[#402D00]">User</span>!
                 </span>
