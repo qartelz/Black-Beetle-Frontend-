@@ -10,7 +10,7 @@ import SandGlass from "@/assets/images/sand-glass.png";
 import { useEffect, useState } from "react";
 import Modal from "@/components/modal";
 import GradientBorderDiv from "@/components/div";
-import OtpBox from "../OtpBox";
+import OtpBox from "../signup/OtpBox";
 import CheckIn from "@/assets/svg/CheckIn";
 import { useSearchParams } from 'next/navigation';
 

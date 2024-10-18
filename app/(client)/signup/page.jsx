@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SandGlass from "@/assets/images/sand-glass.png";
 import Modal from "@/components/modal";
-import OtpBox from "../OtpBox";
+import OtpBox from "./OtpBox";
 import GradientBorderDiv from "@/components/div";
 import CheckIn from "@/assets/svg/CheckIn";
 import { useState } from "react";

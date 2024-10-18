@@ -41,7 +41,7 @@ const Navbar = ({scrollToSection}) => {
 
         {/* Right Side Buttons */}
         <div className="space-x-4 flex z-10">
-          <Link href="/login" className="text-white py-2 px-4 rounded flex items-center">
+          <Link href="/signin" className="text-white py-2 px-4 rounded flex items-center">
             <FaSignInAlt className="inline-block mr-2" /> Login
           </Link>
           <Link href="/signup" className="bg-black rounded-[10px] custom-shadow text-white py-2 px-4 flex items-center">
